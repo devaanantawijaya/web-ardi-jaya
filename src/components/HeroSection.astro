@@ -1,0 +1,99 @@
+---
+import { ArrowUpRight, ArrowDown, MapPin } from "@lucide/astro";
+import { COMPANY_INFO } from "../data/dbdummy";
+
+const whatsappUrl = "Halo Ardi Jaya, saya ingin berdiskusi mengenai proyek pembangunan di Bali.";
+---
+
+<section
+  id="beranda"
+  class="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-between items-center bg-[#0B0E14] text-white pt-32 sm:pt-40 pb-10 sm:pb-14 overflow-hidden"
+>
+  <!-- Background -->
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <img
+      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=90"
+      alt="Ardi Jaya Luxury Construction in Bali"
+      class="w-full h-full object-cover object-center scale-105"
+    />
+
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-[#0B0E14] via-black/45 to-black/60"
+    >
+    </div>
+  </div>
+
+  <!-- Spacer -->
+  <div class="relative z-10 w-full"></div>
+
+  <!-- Hero Content -->
+  <div
+    class="relative z-10 max-w-4xl mx-auto px-6 text-center my-auto py-12 flex flex-col items-center"
+  >
+    <span
+      class="text-xs sm:text-sm font-medium tracking-[0.35em] uppercase text-white/80 mb-5 sm:mb-6 font-mono"
+    >
+      Construction Management • Luxury Villas • Bali
+    </span>
+
+    <h1
+      class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-[-0.03em] leading-[1.06] mb-6"
+    >
+      Build With Confidence.
+    </h1>
+
+    <p
+      class="text-lg sm:text-2xl text-slate-200/90 font-light tracking-wide mb-10 max-w-2xl"
+    >
+      Quality. Attention to detail.
+    </p>
+
+    <!-- Buttons -->
+    <div
+      class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+    >
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group inline-flex items-center justify-center gap-3 bg-white hover:bg-[#F26522] text-black hover:text-white px-9 py-4 rounded-none text-xs uppercase tracking-[0.22em] font-bold shadow-xl transition-all duration-200 w-full sm:w-auto"
+      >
+        <span>Speak to us</span>
+        <ArrowUpRight
+          class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        />
+      </a>
+
+      <a
+        href="/portfolio"
+        class="inline-flex items-center justify-center gap-3 bg-transparent hover:bg-white text-white hover:text-black border border-white/60 px-9 py-4 rounded-none text-xs uppercase tracking-[0.22em] font-bold transition-all duration-200 w-full sm:w-auto"
+      >
+        <span>Our Work</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Bottom Info -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 text-center">
+    <div
+      class="flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] sm:text-xs font-mono text-slate-400 tracking-[0.2em] uppercase border-t border-white/10 pt-4"
+    >
+      <div class="flex items-center gap-2 text-slate-300">
+        <MapPin class="w-3.5 h-3.5 text-[#F26522]" />
+        <span>Desa Baluk, Jembrana, Bali</span>
+      </div>
+
+      <a
+        href="#layanan"
+        class="hidden sm:inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors"
+      >
+        <span>Scroll Down</span>
+        <ArrowDown class="w-3.5 h-3.5 text-orange-400 animate-bounce" />
+      </a>
+
+      <div class="text-slate-400">
+        <span>{COMPANY_INFO.yearsExperience}+ Years of Excellence</span>
+      </div>
+    </div>
+  </div>
+</section>

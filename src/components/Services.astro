@@ -1,0 +1,180 @@
+---
+import {
+  Compass,
+  Ruler,
+  Building2,
+  Trees,
+  Paintbrush,
+  Armchair,
+  ArrowRight,
+  ArrowUpRight,
+} from '@lucide/astro';
+
+const whatsappNumber = '628XXXXXXXXXX';
+
+const services = [
+  {
+    id: 'land-acquisition',
+    title: 'Land Acquisition',
+    icon: Compass,
+    waText:
+      'Halo Ardi Jaya, saya ingin konsultasi pemilihan & uji kelayakan tanah (Land Acquisition) untuk proyek villa di Bali.',
+  },
+  {
+    id: 'architecture',
+    title: 'Architecture',
+    icon: Ruler,
+    waText:
+      'Halo Ardi Jaya, saya ingin berdiskusi mengenai perencanaan arsitektur dan gambar kerja (Architecture & Engineering) di Bali.',
+  },
+  {
+    id: 'construction',
+    title: 'Construction',
+    icon: Building2,
+    waText:
+      'Halo Ardi Jaya, saya ingin konsultasi pelaksanaan konstruksi bangunan/villa dengan tim kontraktor Ardi Jaya.',
+  },
+  {
+    id: 'landscaping',
+    title: 'Landscaping',
+    icon: Trees,
+    waText:
+      'Halo Ardi Jaya, saya ingin konsultasi penataan lanskap tropis (Landscaping & Hardscape) untuk properti di Bali.',
+  },
+  {
+    id: 'interior-design',
+    title: 'Interior Design',
+    icon: Paintbrush,
+    waText:
+      'Halo Ardi Jaya, saya ingin konsultasi desain interior dan spesifikasi material finishing untuk properti di Bali.',
+  },
+  {
+    id: 'furnishings',
+    title: 'Furnishings',
+    icon: Armchair,
+    waText:
+      'Halo Ardi Jaya, saya ingin konsultasi kustomisasi loose/built-in furniture (Furnishings) untuk properti di Bali.',
+  },
+];
+
+const getWhatsAppUrl = (text: string) =>
+  `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+---
+
+<section
+  id="layanan"
+  class="bg-[#EBEBED] text-slate-900 border-b border-slate-300"
+>
+  <div
+    class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-28"
+  >
+    <div
+      class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-stretch"
+    >
+      <!-- SISI KIRI -->
+      <div class="lg:col-span-6 xl:col-span-6 flex flex-col justify-between">
+        <div>
+          <!-- Eyebrow -->
+          <span
+            class="text-xs sm:text-[13px] font-sans font-medium uppercase tracking-[0.25em] text-slate-500 block mb-3"
+          >
+            WHAT WE DO
+          </span>
+
+          <!-- Heading -->
+          <h2
+            class="text-3xl sm:text-5xl xl:text-6xl font-light tracking-tight text-slate-950 leading-[1.12] font-sans mb-6"
+          >
+            We build properties.<br />
+            <span class="font-normal text-slate-900">
+              Beautiful properties.
+            </span>
+          </h2>
+
+          <!-- Description -->
+          <p
+            class="text-sm sm:text-base lg:text-[17px] text-slate-600 font-light leading-relaxed mb-8 sm:mb-10 max-w-xl"
+          >
+            We&apos;re Ardi Jaya. A collective of designers, creatives, cost
+            planners and builders that deliver top quality villas and homes in
+            Bali. We manage all aspects of construction, from land acquisition
+            and planning to design and build: from concept to completion.
+          </p>
+
+          <!-- Service Cards -->
+          <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
+            {
+              services.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <a
+                    key={item.id}
+                    href={getWhatsAppUrl(item.waText)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id={`layanan-tile-${item.id}`}
+                    class="group bg-[#DDDDDF] hover:bg-[#D4D4D7] border border-black/5 p-5 sm:p-7 flex flex-col items-center justify-center text-center gap-3 transition-colors duration-200 rounded-none cursor-pointer"
+                  >
+                    <Icon
+                      class="w-6 h-6 text-slate-900 transition-transform duration-200 group-hover:scale-110"
+                    />
+
+                    <span
+                      class="text-xs sm:text-sm font-normal text-slate-900 tracking-tight"
+                    >
+                      {item.title}
+                    </span>
+                  </a>
+                );
+              })
+            }
+          </div>
+        </div>
+
+        <!-- Bottom Actions -->
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6 pt-2">
+          <a
+            href={getWhatsAppUrl(
+              'Halo Ardi Jaya, saya ingin mendiskusikan rencana pembangunan properti / villa di Bali.'
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            id="layanan-build-a-property-btn"
+            class="group inline-flex items-center gap-3 bg-black hover:bg-[#F26522] text-white px-8 sm:px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] transition-all duration-200 shadow-sm rounded-none"
+          >
+            <span>Build A Property</span>
+
+            <ArrowRight
+              class="w-4 h-4 text-white group-hover:translate-x-1 transition-transform"
+            />
+          </a>
+
+          <a
+            href="/construction"
+            id="layanan-view-process-link"
+            class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600 hover:text-[#F26522] transition-colors py-2"
+          >
+            <span>Lihat 8 Tahap Konstruksi</span>
+            <ArrowUpRight class="w-3.5 h-3.5" />
+          </a>
+        </div>
+      </div>
+
+      <!-- SISI KANAN -->
+      <div class="lg:col-span-6 xl:col-span-6 flex items-center">
+        <div
+          class="relative w-full h-[450px] sm:h-[580px] lg:h-full min-h-[480px] lg:min-h-[660px] xl:min-h-[720px] overflow-hidden shadow-2xl bg-slate-900 group rounded-none"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
+            alt="Ardi Jaya Luxury Villa Interior & Architecture Bali"
+            loading="eager"
+            class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            referrerpolicy="no-referrer"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

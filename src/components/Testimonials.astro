@@ -1,0 +1,148 @@
+---
+import { TESTIMONIALS_DATA } from '../data/dbdummy';
+---
+
+<section
+  id="testimoni"
+  class="py-24 sm:py-32 bg-[#F4F4F6] text-slate-900 border-b border-slate-300"
+>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-14 sm:mb-16">
+      <span
+        class="text-xs font-mono font-bold uppercase tracking-[0.3em] text-[#F26522] block mb-3"
+      >
+        Client Perspectives
+      </span>
+
+      <h2
+        class="text-3xl sm:text-5xl font-light tracking-tight text-slate-950 font-sans mb-4"
+      >
+        Trusted By Property Owners &amp; Developers.
+      </h2>
+
+      <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed">
+        Our reputation is built on delivering high-precision builds,
+        transparent cost planning, and steadfast reliability across Bali.
+      </p>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+
+      {TESTIMONIALS_DATA.map((item) => (
+        <div
+          id={`testimoni-${item.id}`}
+          class="bg-[#DDDDDF] hover:bg-[#D4D4D7] border border-black/5 p-8 sm:p-10 flex flex-col justify-between rounded-none transition-colors duration-200"
+        >
+          <div>
+
+            <!-- Star Ratings & Badge -->
+            <div class="flex items-center justify-between gap-3 mb-6">
+
+              <div class="flex items-center gap-1.5">
+                {Array.from({ length: item.rating }).map(() => (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-4 h-4 text-[#F26522]"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006
+                      5.404.434c1.164.093 1.636 1.545.749 2.292l-4.12 3.468
+                      1.257 5.228c.271 1.13-.968 2.027-1.966 1.436L12 18.1
+                      l-4.618 2.974c-.998.591-2.237-.306-1.966-1.436l1.257-5.228
+                      -4.12-3.468c-.887-.747-.415-2.199.749-2.292l5.404-.434
+                      2.082-5.006Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                ))}
+
+                <span class="text-xs font-mono font-bold text-slate-800 ml-1.5">
+                  5.0
+                </span>
+              </div>
+
+              <span
+                class="text-[10px] font-mono uppercase tracking-widest text-black bg-white/70 px-2.5 py-1 rounded-none font-semibold"
+              >
+                Verified Build
+              </span>
+
+            </div>
+
+            <!-- Content Quote -->
+            <p
+              class="text-base sm:text-lg text-slate-800 font-light italic leading-relaxed mb-8"
+            >
+              &ldquo;{item.content}&rdquo;
+            </p>
+
+          </div>
+
+          <!-- Client Info -->
+          <div
+            class="pt-6 border-t border-black/10 flex items-center justify-between"
+          >
+
+            <div class="flex items-center gap-4">
+
+              <div
+                class="relative w-12 h-12 rounded-none overflow-hidden shrink-0 border border-black/15 bg-slate-300"
+              >
+                <img
+                  src={item.avatar}
+                  alt={item.name}
+                  class="w-full h-full object-cover"
+                  referrerpolicy="no-referrer"
+                  loading="lazy"
+                />
+              </div>
+
+              <div>
+                <h4
+                  class="text-sm font-bold text-slate-950 uppercase tracking-wider font-sans"
+                >
+                  {item.name}
+                </h4>
+
+                <p class="text-xs text-slate-600 font-mono">
+                  {item.role} &bull; {item.companyOrProject}
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Verified -->
+            <div
+              class="flex items-center gap-1 text-[11px] font-mono text-emerald-700 font-bold uppercase tracking-wider"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                class="w-3.5 h-3.5"
+                aria-hidden="true"
+              >
+                <path d="M9 12l2 2 4-4" />
+                <circle cx="12" cy="12" r="9" />
+              </svg>
+
+              <span>Verified</span>
+            </div>
+
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>

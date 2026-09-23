@@ -1,0 +1,156 @@
+---
+import {
+  ShieldCheck,
+  Truck,
+  Award,
+  ClockCheck,
+  ArrowRight,
+  ArrowUpRight,
+} from "@lucide/astro";
+
+const whatsappUrl =
+  "https://wa.me/6281234567890?text=Halo%20Ardi%20Jaya%2C%20saya%20ingin%20konsultasi%20pembangunan%20dan%20mengetahui%20standar%20teknis%20konstruksi.";
+
+const advantages = [
+  {
+    id: "legalitas",
+    title: "Legalitas & Tenaga Ber-SKA",
+    badge: "Resmi",
+    desc: "Arsitek IAI & insinyur sipil bersertifikat SKA. Kepatuhan perizinan PBG/SLF dan tata ruang Bali.",
+    icon: ShieldCheck,
+  },
+  {
+    id: "alat-berat",
+    title: "48+ Unit Alat Berat Mandiri",
+    badge: "Depot Baluk",
+    desc: "Ekskavator, vibro roller, dan dump truck milik sendiri. Mobilisasi cepat tanpa biaya sewa pihak ketiga.",
+    icon: Truck,
+  },
+  {
+    id: "rab-transparan",
+    title: "RAB Transparan & Termin Fisik",
+    badge: "0% Hidden Cost",
+    desc: "Anggaran terinci per line-item dengan progres kurva S. Pembayaran bertahap sesuai capaian nyata.",
+    icon: ClockCheck,
+  },
+  {
+    id: "garansi",
+    title: "Garansi Struktur 10 Tahun",
+    badge: "Sertifikat Resmi",
+    desc: "Jaminan mutu pembesian dan mutu beton dengan masa retensi pemeliharaan purna-jual responsif.",
+    icon: Award,
+  },
+];
+---
+
+<section
+  id="keunggulan"
+  class="bg-[#F4F4F6] text-slate-900 border-b border-slate-300"
+>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-28">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16">
+      <!-- GAMBAR -->
+      <div class="lg:col-span-6 flex items-center order-2 lg:order-1">
+        <div
+          class="relative w-full h-[450px] sm:h-[580px] lg:h-full min-h-[480px] lg:min-h-[620px] overflow-hidden shadow-xl bg-slate-900 group"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+            alt="Ardi Jaya Construction - Villa Bali"
+            loading="lazy"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        </div>
+      </div>
+
+      <!-- KONTEN -->
+      <div
+        class="lg:col-span-6 flex flex-col justify-between order-1 lg:order-2"
+      >
+        <div>
+          <span
+            class="text-xs sm:text-[13px] font-medium uppercase tracking-[0.25em] text-slate-500 block mb-3"
+          >
+            WHY ARDI JAYA
+          </span>
+
+          <h2
+            class="text-3xl sm:text-5xl xl:text-6xl font-light tracking-tight text-slate-950 leading-[1.12] mb-6"
+          >
+            Precision Engineering.<br />
+            <span class="font-normal text-slate-900"> Western Standards. </span>
+          </h2>
+
+          <p
+            class="text-sm sm:text-base lg:text-[17px] text-slate-600 font-light leading-relaxed mb-8 sm:mb-10 max-w-xl"
+          >
+            Memadukan standar manajemen konstruksi presisi dengan penguasaan
+            tanah dan iklim Bali. Kami hadir dengan rantai pasok mandiri tanpa
+            perantara.
+          </p>
+
+          <!-- KEUNGGULAN -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10"
+          >
+            {
+              advantages.map((adv) => {
+                const Icon = adv.icon;
+
+                return (
+                  <div
+                    id={`keunggulan-${adv.id}`}
+                    class="bg-[#DDDDDF] hover:bg-[#D4D4D7] border border-black/5 p-5 sm:p-6 transition-colors duration-200"
+                  >
+                    <div class="flex items-center justify-between mb-3">
+                      <Icon class="w-5 h-5 text-slate-900" />
+
+                      <span class="text-[10px] font-mono uppercase tracking-wider text-black bg-white/70 px-2 py-0.5 font-semibold">
+                        {adv.badge}
+                      </span>
+                    </div>
+
+                    <h3 class="text-sm sm:text-base font-bold text-slate-950 mb-1.5">
+                      {adv.title}
+                    </h3>
+
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                      {adv.desc}
+                    </p>
+                  </div>
+                );
+              })
+            }
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6 pt-2">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            id="keunggulan-consult-btn"
+            class="group inline-flex items-center gap-3 bg-black hover:bg-[#F26522] text-white px-8 sm:px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] transition-all duration-200"
+          >
+            <span>Konsultasi Spesifikasi</span>
+
+            <ArrowRight
+              class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+            />
+          </a>
+
+          <a
+            href="/about"
+            id="keunggulan-legalitas-link"
+            class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600 hover:text-[#F26522] transition-colors py-2"
+          >
+            <span>Profil & Legalitas</span>
+
+            <ArrowUpRight class="w-3.5 h-3.5" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

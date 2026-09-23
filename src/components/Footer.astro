@@ -1,0 +1,145 @@
+---
+import { COMPANY_INFO } from '../data/dbdummy';
+
+const Messagelions= 'Halo tim manajemen Ardi Jaya, saya ingin konsultasi pembangunan di Bali.'
+---
+
+<footer class="bg-[#07090D] text-slate-400 border-t border-white/10 text-sm">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-16 sm:py-20">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 sm:gap-16 pb-16 border-b border-white/10">
+
+      <!-- Brand Info -->
+      <div class="lg:col-span-5">
+        <a href="/" class="inline-flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-none overflow-hidden">
+            <img
+              src="/src/assets/logo ardi jaya.png"
+              alt="Ardi Jaya Construction"
+              width="40"
+              height="40"
+              class="w-full h-full object-contain"
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <span class="text-xl font-extrabold uppercase tracking-[0.2em] text-white">
+              ARDI JAYA
+            </span>
+            <span class="text-[9px] font-bold uppercase tracking-[0.25em] text-[#F26522]">
+              CONSTRUCTION &bull; BALI
+            </span>
+          </div>
+        </a>
+
+        <p class="text-slate-400 font-light text-sm leading-relaxed mb-6 max-w-md">
+          A comprehensive construction and building management firm based in Jembrana, Bali.
+          Specialized in luxury villas, residential builds, commercial developments,
+          SNI material distribution, and heavy equipment plant hire.
+        </p>
+
+        <div class="text-xs font-mono text-slate-500 tracking-wider">
+          NIB: {COMPANY_INFO.licenseNumber} &bull; Baluk, Negara, Jembrana, Bali
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="lg:col-span-3">
+        <h4 class="text-white text-xs font-mono uppercase tracking-[0.25em] font-bold mb-6">
+          Navigation
+        </h4>
+
+        <ul class="space-y-3 font-medium text-xs uppercase tracking-[0.16em]">
+          <li>
+            <a href="/" class="text-slate-400 hover:text-white transition-colors">
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a href="/construction" class="text-slate-400 hover:text-white transition-colors">
+              Construction &bull; Process &amp; Stages
+            </a>
+          </li>
+
+          <li>
+            <a href="/portfolio" class="text-slate-400 hover:text-white transition-colors">
+              Our Work &bull; Portfolio
+            </a>
+          </li>
+
+          <li>
+            <a href="/about" class="text-slate-400 hover:text-white transition-colors">
+              Who Are We &bull; About Us
+            </a>
+          </li>
+
+          <li>
+            <a href="/#kontak" class="text-slate-400 hover:text-white transition-colors">
+              Get In Touch
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="lg:col-span-4">
+        <h4 class="text-white text-xs font-mono uppercase tracking-[0.25em] font-bold mb-6">
+          Bali Headquarters
+        </h4>
+
+        <div class="space-y-3.5 text-xs text-slate-400 font-light">
+
+          <div class="flex items-start gap-3">
+            <span class="text-[#F26522] shrink-0 mt-0.5">📍</span>
+            <span>
+              Desa Baluk, Kec. Negara, Kabupaten Jembrana, Bali 82218
+            </span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#F26522] shrink-0">☎</span>
+            <span>{COMPANY_INFO.phoneDisplay}</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#F26522] shrink-0">✉</span>
+            <span>{COMPANY_INFO.email}</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#F26522] shrink-0">◷</span>
+            <span>Mon &ndash; Sat: 08:00 &ndash; 18:00 WITA</span>
+          </div>
+
+        </div>
+
+        <div class="mt-6">
+          <a
+            href={Messagelions}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2.5 bg-white hover:bg-[#F26522] text-black hover:text-white text-xs uppercase font-bold tracking-[0.2em] px-6 py-3.5 rounded-none transition-colors duration-200"
+          >
+            <span>WhatsApp Direct</span>
+            <span class="text-sm">↗</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+      <div>
+        &copy; {new Date().getFullYear()} ARDI JAYA CONSTRUCTION BALI. ALL RIGHTS RESERVED.
+      </div>
+
+      <div class="flex items-center gap-6">
+        <span>TERMS &bull; PRIVACY</span>
+        <span>BALUK &bull; JEMBRANA &bull; BALI</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
