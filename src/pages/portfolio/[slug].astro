@@ -1,0 +1,548 @@
+---
+import { PROJECTS_DATA } from "../../data/dbdummy";
+import PortfolioGallery from "../../components/PortfolioGallery.astro";
+import {
+  MapPin,
+  Clock,
+  ArrowLeft,
+  MessageSquareText,
+  CheckCircle2,
+  Building,
+  Shield,
+  Layers,
+  ArrowRight,
+} from "@lucide/astro";
+import Layout from "../../layouts/Layout.astro";
+
+export function getStaticPaths() {
+  return PROJECTS_DATA.map((project) => ({
+    params: {
+      slug: project.slug,
+    },
+    props: {
+      project,
+    },
+  }));
+}
+
+const { project } = Astro.props;
+
+const relatedProjects = PROJECTS_DATA.filter(
+  (p) => p.slug !== project.slug,
+).slice(0, 3);
+
+const landArea = project.specifications.find(
+  (item) => item.label === "Luas Lahan",
+);
+
+const buildingArea = project.specifications.find(
+  (item) => item.label === "Luas Bangunan",
+);
+
+const specs = [
+  { label: "Kategori", value: project.category },
+  { label: "Lokasi", value: project.location },
+  { label: "Luas Lahan", value: landArea?.value },
+  { label: "Luas Bangunan", value: buildingArea?.value },
+  { label: "Tahun", value: project.year },
+];
+
+const images = project.gallery;
+const MAX_DISPLAY = 6;
+const displayedImages = images.slice(0, MAX_DISPLAY);
+const remainingCount = images.length - MAX_DISPLAY;
+const hasMoreThanSix = remainingCount > 0;
+---
+
+<Layout>
+  <main class="flex-1">
+    <section
+      class="relative w-full h-[60vh] min-h-[700px] max-h-[700px] flex items-center justify-center overflow-hidden"
+    >
+      <!-- Background Image -->
+      <div class="absolute inset-0">
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="eager"
+          fetchpriority="high"
+          sizes="100vw"
+          class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
+          referrerpolicy="no-referrer"
+        />
+      </div>
+
+      <!-- Dark Gradient Overlay & Vignette -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/60 backdrop-brightness-95"
+      >
+      </div>
+
+      <!-- Hero Content -->
+      <div
+        class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center"
+      >
+        <h1
+          class="text-4xl sm:text-6xl md:text-7xl font-bold tracking-wider text-white uppercase drop-shadow-md select-none transition-all duration-300"
+        >
+          {project.title}
+        </h1>
+
+        <p
+          class="mt-2.5 sm:mt-3 text-amber-400 font-medium text-sm sm:text-base md:text-lg tracking-wide drop-shadow-xs"
+        >
+          {project.tagline}
+        </p>
+      </div>
+    </section>
+
+    <section
+      class="w-full bg-[#ECECEC] border-b border-neutral-300 py-6 px-4 sm:px-6 lg:px-8 shadow-xs"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8"
+        >
+          {
+            specs.map((item) => (
+              <div class="flex flex-col items-center">
+                <span class="text-[11px] sm:text-xs font-bold text-neutral-800 tracking-wider uppercase">
+                  {item.label}
+                </span>
+
+                <div class="w-8 sm:w-10 h-[2px] bg-amber-400 mt-1 mb-2 rounded-full" />
+
+                <span class="text-xs sm:text-sm text-neutral-700 font-medium text-center">
+                  {item.value}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-14 sm:mb-16 pt-10 text-center w-full">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+          class="text-2xl sm:text-3xl md:text-4xl font-light text-slate-900 tracking-tight mb-4"
+        >
+          Project overview
+        </h2>
+
+        <p
+          class="text-sm sm:text-base text-slate-700 leading-relaxed font-normal"
+        >
+          {project.description}
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-16">
+    <!-- Heading -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-6">
+        <h3 class="text-2xl sm:text-3xl md:text-4xl font-light text-slate-900 tracking-tight">
+        Gallery
+        </h3>
+
+        <button
+        type="button"
+        data-gallery-open="0"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-600 hover:text-black uppercase tracking-wider transition-colors cursor-pointer"
+        >
+        <!-- Images icon -->
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <rect width="18" height="18" x="3" y="3" rx="2" />
+            <circle cx="9" cy="9" r="2" />
+            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+        </svg>
+
+        <span>Semua ({images.length})</span>
+        </button>
+        </div>
+         <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            {
+            displayedImages.map((image, idx) => {
+                const isSixthWithMore = idx === MAX_DISPLAY - 1 && hasMoreThanSix;
+
+                return (
+                <button
+                    type="button"
+                    data-gallery-open={idx}
+                    class="group relative cursor-pointer overflow-hidden rounded-none bg-neutral-100 aspect-[4/3] border border-slate-200/90 shadow-2xs hover:shadow-md transition-all duration-300 text-left"
+                >
+                    <img
+                    src={image}
+                    alt={`${project.title} - Foto ${idx + 1}`}
+                    loading={idx === 0 ? "eager" : "lazy"}
+                    class={`w-full h-full object-cover transition-transform duration-700 ease-out ${
+                        isSixthWithMore ? "scale-100" : "group-hover:scale-105"
+                    }`}
+                    referrerpolicy="no-referrer"
+                    />
+
+                    <!-- Normal Hover Overlay -->
+                    {
+                    !isSixthWithMore && (
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <div class="flex w-full justify-end">
+                            <span class="p-2 bg-black/70 text-white rounded-none">
+                            <!-- Maximize icon -->
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M8 3H5a2 2 0 0 0-2 2v3" />
+                                <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
+                                <path d="M3 16v3a2 2 0 0 0 2 2h3" />
+                                <path d="M16 21h3a2 2 0 0 0 2-2v-3" />
+                            </svg>
+                            </span>
+                        </div>
+                        </div>
+                    )
+                    }
+
+                    <!-- More Photos Overlay -->
+                    {
+                    isSixthWithMore && (
+                        <div class="absolute inset-0 bg-black/65 hover:bg-black/75 transition-colors flex flex-col items-center justify-center text-white text-center p-6 rounded-none backdrop-blur-[1px]">
+                        <div class="w-10 h-[2px] bg-amber-400 mb-3" />
+
+                        <span class="text-4xl sm:text-5xl font-light text-white tracking-tight mb-1">
+                            +{remainingCount}
+                        </span>
+
+                        <span class="text-xs sm:text-sm font-medium uppercase tracking-wider text-amber-300/95 flex items-center gap-1.5">
+                            <!-- Images icon -->
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="15"
+                            height="15"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            >
+                            <rect width="18" height="18" x="3" y="3" rx="2" />
+                            <circle cx="9" cy="9" r="2" />
+                            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                            </svg>
+
+                            Lihat foto lainnya
+                        </span>
+                        </div>
+                    )
+                    }
+                </button>
+                );
+            })
+            }
+        </div>
+    </div>
+    </section>
+
+    <div
+    id="project-lightbox"
+    class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden items-center justify-center p-4 select-none"
+    aria-hidden="true"
+    >
+    <!-- Top Bar -->
+    <div class="absolute top-4 left-4 right-4 flex items-center justify-between text-white z-50">
+        <div class="text-xs sm:text-sm font-mono text-slate-300 flex items-center gap-2">
+        <span id="lightbox-current" class="text-amber-400 font-bold">1</span>
+        <span>/</span>
+        <span>{images.length}</span>
+
+        <span class="hidden sm:inline text-slate-500">|</span>
+
+        <span class="hidden sm:inline text-slate-400 text-xs">
+            Gunakan panah keyboard (← / →) untuk navigasi
+        </span>
+        </div>
+
+        <button
+        type="button"
+        id="lightbox-close"
+        class="p-2.5 rounded-none bg-white/10 hover:bg-white/25 text-white transition-colors cursor-pointer"
+        title="Tutup (Esc)"
+        >
+        <!-- X icon -->
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+        </svg>
+        </button>
+    </div>
+
+    <!-- Previous -->
+    <button
+        type="button"
+        id="lightbox-prev"
+        class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-none bg-black/50 hover:bg-black/80 text-white transition-all z-50 cursor-pointer"
+        title="Sebelumnya (Arrow Left)"
+    >
+        <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        >
+        <path d="m15 18-6-6 6-6" />
+        </svg>
+    </button>
+
+    <!-- Next -->
+    <button
+        type="button"
+        id="lightbox-next"
+        class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-none bg-black/50 hover:bg-black/80 text-white transition-all z-50 cursor-pointer"
+        title="Berikutnya (Arrow Right)"
+    >
+        <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        >
+        <path d="m9 18 6-6-6-6" />
+        </svg>
+    </button>
+
+    <!-- Main Image -->
+    <div
+        id="lightbox-content"
+        class="relative max-w-5xl max-h-[85vh] w-full h-full flex flex-col items-center justify-center"
+    >
+        <div class="relative w-full h-[72vh] sm:h-[76vh]">
+        <img
+            id="lightbox-image"
+            src=""
+            alt=""
+            class="w-full h-full object-contain"
+            referrerpolicy="no-referrer"
+        />
+        </div>
+    </div>
+    </div>
+
+    <!-- Related Projects -->
+    <section class="py-16 bg-slate-50 border-t border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between mb-8">
+            <h3 class="text-2xl font-black text-slate-900 tracking-tight">
+              Portofolio Proyek Lainnya
+            </h3>
+
+            <a
+              href="/portfolio"
+              class="inline-flex items-center gap-1 text-sm font-bold text-[#F26522] hover:text-[#d95314]"
+            >
+              <span>Lihat Semua</span>
+              <ArrowRight size={16} />
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        relatedProjects.map((rel) => (
+          <article class="group bg-white rounded-none border border-slate-200 overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col">
+            <a
+              href={`/portfolio/${rel.slug}`}
+              class="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 block rounded-none"
+            >
+              <img
+                src={rel.image}
+                alt={rel.title}
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </a>
+
+            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 text-xs font-medium text-slate-500 mb-2">
+                  <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#F26522]">
+                    {rel.category}
+                  </span>
+
+                  <span class="flex items-center gap-1 text-slate-400">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 10c0 4.993-8 12-8 12S4 14.993 4 10a8 8 0 1 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+
+                    {rel.location}
+                  </span>
+                </div>
+
+                <h4 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#F26522] transition-colors">
+                  <a href={`/portfolio/${rel.slug}`}>
+                    {rel.title}
+                  </a>
+                </h4>
+
+                <p class="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed mb-4">
+                  {rel.tagline}
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-xs text-slate-500 font-mono">
+                  {rel.duration}
+                </span>
+
+                <a
+                  href={`/portfolio/${rel.slug}`}
+                  class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-black hover:text-[#F26522] transition-colors"
+                >
+                  <span>Detail Proyek</span>
+
+                  <ArrowRight size={14} />
+                </a>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+          </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script define:vars={{ images }}>
+  const galleryImages = images;
+
+  const lightbox = document.getElementById("project-lightbox");
+  const lightboxImage = document.getElementById("lightbox-image");
+  const currentCounter = document.getElementById("lightbox-current");
+
+  const closeButton = document.getElementById("lightbox-close");
+  const prevButton = document.getElementById("lightbox-prev");
+  const nextButton = document.getElementById("lightbox-next");
+  const content = document.getElementById("lightbox-content");
+
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    updateLightbox();
+
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+    lightbox.setAttribute("aria-hidden", "false");
+
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    lightbox.setAttribute("aria-hidden", "true");
+
+    document.body.style.overflow = "";
+  }
+
+  function updateLightbox() {
+    lightboxImage.src = galleryImages[currentIndex];
+    lightboxImage.alt = `Gallery image ${currentIndex + 1}`;
+    currentCounter.textContent = currentIndex + 1;
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    updateLightbox();
+  }
+
+  function prevImage() {
+    currentIndex =
+      (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+
+    updateLightbox();
+  }
+
+  document.querySelectorAll("[data-gallery-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.galleryOpen);
+      openLightbox(index);
+    });
+  });
+
+  closeButton.addEventListener("click", closeLightbox);
+
+  prevButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    prevImage();
+  });
+
+  nextButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    nextImage();
+  });
+
+  content.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
+  lightbox.addEventListener("click", closeLightbox);
+
+  document.addEventListener("keydown", (event) => {
+    if (lightbox.classList.contains("hidden")) return;
+
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowRight") nextImage();
+    if (event.key === "ArrowLeft") prevImage();
+  });
+</script>

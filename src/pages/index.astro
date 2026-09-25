@@ -1,22 +1,22 @@
 ---
-import Faq from "../components/Faq.astro";
-import FeaturedPortfolio from "../components/FeaturedPortfolio.astro";
-import HeroSection from "../components/HeroSection.astro";
-import Keungulan from "../components/Keungulan.astro";
-import Services from "../components/Services.astro";
-import Testimonials from "../components/Testimonials.astro";
-import ContactWhatsappCTA from "../components/ContactWhatsappCTA.astro";
 import Layout from "../layouts/Layout.astro";
-import Footer from "../components/Footer.astro";
+import Faq from "../components/homepage/Faq.astro";
+import FeaturedPortfolio from "../components/homepage/FeaturedPortfolio.astro";
+import HeroSection from "../components/homepage/HeroSection.astro";
+import Keungulan from "../components/homepage/Keungulan.astro";
+import Services from "../components/homepage/Services.astro";
+import Testimonials from "../components/homepage/Testimonials.astro";
+import ContactWhatsappCTA from "../components/homepage/ContactWhatsappCTA.astro";
 ---
 
 <Layout>
-  <HeroSection />
-  <Keungulan />
-  <FeaturedPortfolio />
-  <Services />
-  <Testimonials />
-  <Faq />
-  <ContactWhatsappCTA />
-  <Footer />
+  <main>
+    <HeroSection />
+    <Keungulan />
+    <FeaturedPortfolio />
+    <Services />
+    <Testimonials />
+    <Faq />
+    <ContactWhatsappCTA />
+  </main>
 </Layout>

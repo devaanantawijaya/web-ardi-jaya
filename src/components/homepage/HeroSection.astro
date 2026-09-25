@@ -1,8 +1,9 @@
 ---
 import { ArrowUpRight, ArrowDown, MapPin } from "@lucide/astro";
-import { COMPANY_INFO } from "../data/dbdummy";
+import { COMPANY_INFO } from "../../data/dbdummy";
 
-const whatsappUrl = "Halo Ardi Jaya, saya ingin berdiskusi mengenai proyek pembangunan di Bali.";
+const whatsappUrl =
+  "Halo Ardi Jaya, saya ingin berdiskusi mengenai proyek pembangunan di Bali.";
 ---
 
 <section
@@ -12,7 +13,7 @@ const whatsappUrl = "Halo Ardi Jaya, saya ingin berdiskusi mengenai proyek pemba
   <!-- Background -->
   <div class="absolute inset-0 z-0 pointer-events-none">
     <img
-      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=90"
+      src="/src/assets/gambar1.jpeg"
       alt="Ardi Jaya Luxury Construction in Bali"
       class="w-full h-full object-cover object-center scale-105"
     />
@@ -30,22 +31,17 @@ const whatsappUrl = "Halo Ardi Jaya, saya ingin berdiskusi mengenai proyek pemba
   <div
     class="relative z-10 max-w-4xl mx-auto px-6 text-center my-auto py-12 flex flex-col items-center"
   >
-    <span
-      class="text-xs sm:text-sm font-medium tracking-[0.35em] uppercase text-white/80 mb-5 sm:mb-6 font-mono"
-    >
-      Construction Management • Luxury Villas • Bali
-    </span>
-
-    <h1
+    <div
       class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-[-0.03em] leading-[1.06] mb-6"
     >
-      Build With Confidence.
-    </h1>
+      <h1>We Build.</h1>
+      <h1 class="text-[#E5A823]">You Trust.</h1>
+    </div>
 
     <p
       class="text-lg sm:text-2xl text-slate-200/90 font-light tracking-wide mb-10 max-w-2xl"
     >
-      Quality. Attention to detail.
+      Quality construction, from planning to completion.
     </p>
 
     <!-- Buttons -->

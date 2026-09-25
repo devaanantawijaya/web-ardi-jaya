@@ -1,0 +1,483 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { PROJECTS_DATA } from "../../data/dbdummy";
+
+const categories = [
+  "Semua",
+  "Residensial",
+  "Komersial",
+  "Baja & Industri",
+  "Renovasi",
+  "Infrastruktur",
+];
+---
+
+<Layout>
+  <main class="flex-1">
+    <section
+      class="relative min-h-[65vh] sm:min-h-[75vh] flex items-center justify-center overflow-hidden bg-black text-white"
+    >
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2400&q=85"
+          alt="Project Portfolio - Ardi Jaya Bali"
+          class="absolute inset-0 w-full h-full object-cover object-center scale-105"
+        />
+
+        <div class="absolute inset-0 bg-black/45 sm:bg-black/40"></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/35"
+        >
+        </div>
+      </div>
+
+      <div
+        class="relative z-10 max-w-6xl mx-auto px-6 sm:px-8 text-center pt-24 pb-16"
+      >
+        <h1
+          class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white leading-[0.92] font-sans"
+        >
+          PROJECT<br />
+          PORTFOLIO<span class="text-[#E5A823]">.</span>
+        </h1>
+      </div>
+    </section>
+
+    <section
+      class="bg-[#F5F5F7] border-b border-slate-300 py-6 sticky top-[60px] z-30 shadow-xs"
+    >
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+        >
+          <div class="flex flex-wrap items-center gap-2">
+            {
+              categories.map((cat) => (
+                <button
+                  type="button"
+                  data-category={cat}
+                  class:list={[
+                    "category-btn px-4 py-2 rounded-none text-xs uppercase font-bold tracking-[0.16em] transition-all",
+                    cat === "Semua"
+                      ? "active bg-black text-white"
+                      : "bg-white text-slate-800 hover:bg-[#F26522] hover:text-white border border-slate-300",
+                  ]}
+                >
+                  {cat}
+                </button>
+              ))
+            }
+          </div>
+
+          <div class="relative min-w-[260px]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+
+            <input
+              id="project-search"
+              type="text"
+              placeholder="Cari proyek / lokasi..."
+              class="w-full pl-9 pr-4 py-2 rounded-none text-xs bg-white border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:border-black"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div
+          id="projects-grid"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {
+            PROJECTS_DATA.map((project, index) => (
+              <article
+                id={`portfolio-item-${project.slug}`}
+                data-category={project.category}
+                data-search={`${project.title} ${project.location} ${project.description}`}
+                data-index={index}
+                class:list={[
+                  "project-card group bg-white rounded-none border border-slate-200 overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col",
+                  index >= 6 && "hidden",
+                ]}
+              >
+                <a
+                  href={`/portfolio/${project.slug}`}
+                  class="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 block rounded-none"
+                  data-project-click={project.title}
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </a>
+
+                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 text-xs font-medium text-slate-500 mb-2">
+                      <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#F26522]">
+                        {project.category}
+                      </span>
+
+                      <span class="flex items-center gap-1 text-slate-400">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M20 10c0 4.993-8 12-8 12S4 14.993 4 10a8 8 0 1 1 16 0Z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+
+                        {project.location}
+                      </span>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#F26522] transition-colors">
+                      <a
+                        href={`/portfolio/${project.slug}`}
+                        data-project-click={project.title}
+                      >
+                        {project.title}
+                      </a>
+                    </h3>
+
+                    <p class="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed mb-4">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-xs text-slate-500 font-mono">
+                      {project.duration}
+                    </span>
+
+                    <a
+                      href={`/portfolio/${project.slug}`}
+                      data-project-click={project.title}
+                      class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-black hover:text-[#F26522] transition-colors"
+                    >
+                      <span>Detail Proyek</span>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+
+        <!-- Empty State -->
+        <div
+          id="empty-state"
+          class="hidden text-center py-16 bg-[#F5F5F7] border border-slate-300 p-8"
+        >
+          <h3 class="text-lg font-bold text-slate-900 uppercase tracking-tight">
+            Tidak ada proyek yang sesuai
+          </h3>
+
+          <p class="text-sm text-slate-500 mt-1 mb-4">
+            Coba kata kunci pencarian lain atau ubah filter kategori.
+          </p>
+
+          <button
+            id="reset-filter"
+            type="button"
+            class="px-6 py-3 bg-black hover:bg-[#F26522] text-white text-xs font-bold uppercase tracking-[0.2em] transition-colors"
+          >
+            Reset Filter
+          </button>
+        </div>
+
+        <!-- Load More -->
+        <div id="load-more-wrapper" class="flex justify-center mt-12">
+          <button
+            id="load-more"
+            type="button"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-black hover:bg-[#F26522] text-white text-xs font-bold uppercase tracking-[0.2em] transition-all duration-200"
+          >
+            <span>LIHAT LEBIH</span>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14"></path>
+              <path d="m19 12-7 7-7-7"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- CTA -->
+        <div
+          class="mt-16 bg-black text-white rounded-none p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10"
+        >
+          <div class="max-w-2xl">
+            <span
+              class="text-xs font-mono font-bold uppercase tracking-[0.3em] text-[#F26522] block mb-2"
+            >
+              CUSTOM INQUIRY
+            </span>
+
+            <h3
+              class="text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-white mb-2"
+            >
+              Punya Rencana Proyek Khusus di Bali?
+            </h3>
+
+            <p class="text-sm text-slate-400 font-light">
+              Konsultasikan gagasan dan denah Anda langsung kepada tim teknik
+              Ardi Jaya. Kami berikan rekomendasi spesifikasi struktur serta
+              estimasi anggaran gratis.
+            </p>
+          </div>
+
+          <a
+            href="https://wa.me/628xxxxxxxxxx"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="portfolio-page-wa-cta"
+            class="shrink-0 inline-flex items-center gap-3 bg-white hover:bg-[#F26522] text-black hover:text-white px-8 py-4.5 rounded-none font-bold text-xs uppercase tracking-[0.22em] transition-all duration-200"
+          >
+            <span>Konsultasi Proyek</span>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  const categoryButtons =
+    document.querySelectorAll<HTMLButtonElement>(".category-btn");
+
+  const projectCards = document.querySelectorAll<HTMLElement>(".project-card");
+
+  const searchInput =
+    document.querySelector<HTMLInputElement>("#project-search");
+
+  const emptyState = document.querySelector<HTMLElement>("#empty-state");
+
+  const resetButton =
+    document.querySelector<HTMLButtonElement>("#reset-filter");
+
+  const loadMoreButton =
+    document.querySelector<HTMLButtonElement>("#load-more");
+
+  const loadMoreWrapper =
+    document.querySelector<HTMLElement>("#load-more-wrapper");
+
+  let selectedCategory = "Semua";
+
+  // Jumlah project yang ditampilkan
+  const ITEMS_PER_LOAD = 6;
+
+  let visibleLimit = ITEMS_PER_LOAD;
+
+  function filterProjects() {
+    const searchQuery = searchInput?.value.toLowerCase().trim() || "";
+
+    const isSearching = searchQuery.length > 0 || selectedCategory !== "Semua";
+
+    let matchingProjects: HTMLElement[] = [];
+
+    projectCards.forEach((card) => {
+      const category = card.dataset.category || "";
+      const searchData = (card.dataset.search || "").toLowerCase();
+
+      const matchesCategory =
+        selectedCategory === "Semua" || category === selectedCategory;
+
+      const matchesSearch = searchData.includes(searchQuery);
+
+      if (matchesCategory && matchesSearch) {
+        matchingProjects.push(card);
+      }
+
+      card.classList.add("hidden");
+    });
+
+    // Saat search/filter digunakan,
+    // tampilkan semua hasil yang cocok
+    if (isSearching) {
+      matchingProjects.forEach((card) => {
+        card.classList.remove("hidden");
+      });
+
+      loadMoreWrapper?.classList.add("hidden");
+    } else {
+      // Kondisi normal: tampilkan sesuai limit
+      matchingProjects.forEach((card, index) => {
+        if (index < visibleLimit) {
+          card.classList.remove("hidden");
+        }
+      });
+
+      // Tombol Load More
+      if (matchingProjects.length > visibleLimit) {
+        loadMoreWrapper?.classList.remove("hidden");
+      } else {
+        loadMoreWrapper?.classList.add("hidden");
+      }
+    }
+
+    // Empty state
+    emptyState?.classList.toggle("hidden", matchingProjects.length !== 0);
+  }
+
+  // Category filter
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedCategory = button.dataset.category || "Semua";
+
+      visibleLimit = ITEMS_PER_LOAD;
+
+      categoryButtons.forEach((btn) => {
+        btn.classList.remove("active", "bg-black", "text-white");
+
+        btn.classList.add(
+          "bg-white",
+          "text-slate-800",
+          "border",
+          "border-slate-300",
+        );
+      });
+
+      button.classList.remove(
+        "bg-white",
+        "text-slate-800",
+        "border",
+        "border-slate-300",
+      );
+
+      button.classList.add("active", "bg-black", "text-white");
+
+      filterProjects();
+    });
+  });
+
+  // Search
+  searchInput?.addEventListener("input", () => {
+    filterProjects();
+  });
+
+  // Load More
+  loadMoreButton?.addEventListener("click", () => {
+    visibleLimit += ITEMS_PER_LOAD;
+
+    filterProjects();
+  });
+
+  // Reset
+  resetButton?.addEventListener("click", () => {
+    selectedCategory = "Semua";
+    visibleLimit = ITEMS_PER_LOAD;
+
+    if (searchInput) {
+      searchInput.value = "";
+    }
+
+    categoryButtons.forEach((btn) => {
+      const isAll = btn.dataset.category === "Semua";
+
+      btn.classList.toggle("active", isAll);
+      btn.classList.toggle("bg-black", isAll);
+      btn.classList.toggle("text-white", isAll);
+
+      btn.classList.toggle("bg-white", !isAll);
+      btn.classList.toggle("text-slate-800", !isAll);
+      btn.classList.toggle("border", !isAll);
+      btn.classList.toggle("border-slate-300", !isAll);
+    });
+
+    filterProjects();
+  });
+
+  // Initial state
+  filterProjects();
+
+  // Project tracking
+  document
+    .querySelectorAll<HTMLElement>("[data-project-click]")
+    .forEach((link) => {
+      link.addEventListener("click", () => {
+        const project = link.dataset.projectClick;
+
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "project_click", {
+            project_name: project,
+          });
+        }
+      });
+    });
+
+  // WhatsApp tracking
+  const whatsappCta = document.querySelector("#portfolio-page-wa-cta");
+
+  whatsappCta?.addEventListener("click", () => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "whatsapp_click", {
+        source: "Portfolio_Page_CTA",
+        label: "Konsultasi Proyek dari Portofolio",
+      });
+    }
+  });
+</script>

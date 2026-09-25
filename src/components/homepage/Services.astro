@@ -8,52 +8,52 @@ import {
   Armchair,
   ArrowRight,
   ArrowUpRight,
-} from '@lucide/astro';
+} from "@lucide/astro";
 
-const whatsappNumber = '628XXXXXXXXXX';
+const whatsappNumber = "628XXXXXXXXXX";
 
 const services = [
   {
-    id: 'land-acquisition',
-    title: 'Land Acquisition',
+    id: "land-acquisition",
+    title: "Land Acquisition",
     icon: Compass,
     waText:
-      'Halo Ardi Jaya, saya ingin konsultasi pemilihan & uji kelayakan tanah (Land Acquisition) untuk proyek villa di Bali.',
+      "Halo Ardi Jaya, saya ingin konsultasi pemilihan & uji kelayakan tanah (Land Acquisition) untuk proyek villa di Bali.",
   },
   {
-    id: 'architecture',
-    title: 'Architecture',
+    id: "architecture",
+    title: "Architecture",
     icon: Ruler,
     waText:
-      'Halo Ardi Jaya, saya ingin berdiskusi mengenai perencanaan arsitektur dan gambar kerja (Architecture & Engineering) di Bali.',
+      "Halo Ardi Jaya, saya ingin berdiskusi mengenai perencanaan arsitektur dan gambar kerja (Architecture & Engineering) di Bali.",
   },
   {
-    id: 'construction',
-    title: 'Construction',
+    id: "construction",
+    title: "Construction",
     icon: Building2,
     waText:
-      'Halo Ardi Jaya, saya ingin konsultasi pelaksanaan konstruksi bangunan/villa dengan tim kontraktor Ardi Jaya.',
+      "Halo Ardi Jaya, saya ingin konsultasi pelaksanaan konstruksi bangunan/villa dengan tim kontraktor Ardi Jaya.",
   },
   {
-    id: 'landscaping',
-    title: 'Landscaping',
+    id: "landscaping",
+    title: "Landscaping",
     icon: Trees,
     waText:
-      'Halo Ardi Jaya, saya ingin konsultasi penataan lanskap tropis (Landscaping & Hardscape) untuk properti di Bali.',
+      "Halo Ardi Jaya, saya ingin konsultasi penataan lanskap tropis (Landscaping & Hardscape) untuk properti di Bali.",
   },
   {
-    id: 'interior-design',
-    title: 'Interior Design',
+    id: "interior-design",
+    title: "Interior Design",
     icon: Paintbrush,
     waText:
-      'Halo Ardi Jaya, saya ingin konsultasi desain interior dan spesifikasi material finishing untuk properti di Bali.',
+      "Halo Ardi Jaya, saya ingin konsultasi desain interior dan spesifikasi material finishing untuk properti di Bali.",
   },
   {
-    id: 'furnishings',
-    title: 'Furnishings',
+    id: "furnishings",
+    title: "Furnishings",
     icon: Armchair,
     waText:
-      'Halo Ardi Jaya, saya ingin konsultasi kustomisasi loose/built-in furniture (Furnishings) untuk properti di Bali.',
+      "Halo Ardi Jaya, saya ingin konsultasi kustomisasi loose/built-in furniture (Furnishings) untuk properti di Bali.",
   },
 ];
 
@@ -65,9 +65,7 @@ const getWhatsAppUrl = (text: string) =>
   id="layanan"
   class="bg-[#EBEBED] text-slate-900 border-b border-slate-300"
 >
-  <div
-    class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-28"
-  >
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-28">
     <div
       class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-stretch"
     >
@@ -85,20 +83,20 @@ const getWhatsAppUrl = (text: string) =>
           <h2
             class="text-3xl sm:text-5xl xl:text-6xl font-light tracking-tight text-slate-950 leading-[1.12] font-sans mb-6"
           >
-            We build properties.<br />
-            <span class="font-normal text-slate-900">
-              Beautiful properties.
-            </span>
+            We build spaces.<br />
+            <span class="font-normal text-slate-900"> Built to last. </span>
           </h2>
 
           <!-- Description -->
           <p
             class="text-sm sm:text-base lg:text-[17px] text-slate-600 font-light leading-relaxed mb-8 sm:mb-10 max-w-xl"
           >
-            We&apos;re Ardi Jaya. A collective of designers, creatives, cost
-            planners and builders that deliver top quality villas and homes in
-            Bali. We manage all aspects of construction, from land acquisition
-            and planning to design and build: from concept to completion.
+            Kami adalah Ardi Jaya, perusahaan konstruksi yang mengerjakan
+            hunian, villa, perkantoran, dan ruang komersial berkualitas di
+            seluruh Bali. Mulai dari perencanaan dan desain hingga proses
+            konstruksi dan penyelesaian, kami menangani setiap tahap dengan
+            ketelitian, perhatian terhadap detail, dan komitmen terhadap
+            kualitas.
           </p>
 
           <!-- Service Cards -->
@@ -116,13 +114,9 @@ const getWhatsAppUrl = (text: string) =>
                     id={`layanan-tile-${item.id}`}
                     class="group bg-[#DDDDDF] hover:bg-[#D4D4D7] border border-black/5 p-5 sm:p-7 flex flex-col items-center justify-center text-center gap-3 transition-colors duration-200 rounded-none cursor-pointer"
                   >
-                    <Icon
-                      class="w-6 h-6 text-slate-900 transition-transform duration-200 group-hover:scale-110"
-                    />
+                    <Icon class="w-6 h-6 text-slate-900 transition-transform duration-200 group-hover:scale-110" />
 
-                    <span
-                      class="text-xs sm:text-sm font-normal text-slate-900 tracking-tight"
-                    >
+                    <span class="text-xs sm:text-sm font-normal text-slate-900 tracking-tight">
                       {item.title}
                     </span>
                   </a>
@@ -136,7 +130,7 @@ const getWhatsAppUrl = (text: string) =>
         <div class="flex flex-wrap items-center gap-4 sm:gap-6 pt-2">
           <a
             href={getWhatsAppUrl(
-              'Halo Ardi Jaya, saya ingin mendiskusikan rencana pembangunan properti / villa di Bali.'
+              "Halo Ardi Jaya, saya ingin mendiskusikan rencana pembangunan properti / villa di Bali.",
             )}
             target="_blank"
             rel="noopener noreferrer"
@@ -167,7 +161,7 @@ const getWhatsAppUrl = (text: string) =>
           class="relative w-full h-[450px] sm:h-[580px] lg:h-full min-h-[480px] lg:min-h-[660px] xl:min-h-[720px] overflow-hidden shadow-2xl bg-slate-900 group rounded-none"
         >
           <img
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
+            src="/src/assets/gambar3.jpeg"
             alt="Ardi Jaya Luxury Villa Interior & Architecture Bali"
             loading="eager"
             class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"

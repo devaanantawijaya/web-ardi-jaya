@@ -1,5 +1,5 @@
 ---
-import { TESTIMONIALS_DATA } from '../data/dbdummy';
+import { TESTIMONIALS_DATA } from '../../data/dbdummy';
 ---
 
 <section
@@ -67,13 +67,6 @@ import { TESTIMONIALS_DATA } from '../data/dbdummy';
                   5.0
                 </span>
               </div>
-
-              <span
-                class="text-[10px] font-mono uppercase tracking-widest text-black bg-white/70 px-2.5 py-1 rounded-none font-semibold"
-              >
-                Verified Build
-              </span>
-
             </div>
 
             <!-- Content Quote -->
@@ -96,9 +89,9 @@ import { TESTIMONIALS_DATA } from '../data/dbdummy';
                 class="relative w-12 h-12 rounded-none overflow-hidden shrink-0 border border-black/15 bg-slate-300"
               >
                 <img
-                  src={item.avatar}
+                  src="/src/assets/anonim.png"
                   alt={item.name}
-                  class="w-full h-full object-cover"
+                  class="w-full object-cover"
                   referrerpolicy="no-referrer"
                   loading="lazy"
                 />
@@ -115,29 +108,7 @@ import { TESTIMONIALS_DATA } from '../data/dbdummy';
                   {item.role} &bull; {item.companyOrProject}
                 </p>
               </div>
-
             </div>
-
-            <!-- Verified -->
-            <div
-              class="flex items-center gap-1 text-[11px] font-mono text-emerald-700 font-bold uppercase tracking-wider"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                class="w-3.5 h-3.5"
-                aria-hidden="true"
-              >
-                <path d="M9 12l2 2 4-4" />
-                <circle cx="12" cy="12" r="9" />
-              </svg>
-
-              <span>Verified</span>
-            </div>
-
           </div>
 
         </div>

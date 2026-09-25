@@ -2,4 +2,471 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout> ini about </Layout>
+<Layout>
+  <main
+    class="min-h-screen bg-[#ECECEE] text-slate-900 font-sans selection:bg-[#F26522] selection:text-white"
+  >
+    <!-- ========================================================= -->
+    <!-- 1. HERO SECTION                                           -->
+    <!-- ========================================================= -->
+    <section class="pt-32 sm:pt-40 bg-[#ECECEE] border-b border-slate-300">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-16 sm:pb-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+          <!-- Left -->
+          <div class="lg:col-span-7">
+            <span
+              class="text-xs font-mono font-bold uppercase tracking-[0.25em] text-slate-500 block mb-4"
+            >
+              ABOUT US
+            </span>
+
+            <h1
+              class="text-4xl sm:text-6xl md:text-7xl font-light text-slate-950 tracking-tight leading-[1.06] font-sans"
+            >
+              Your <span class="font-serif italic font-normal">Vision,</span><br
+              />
+              Our<br />
+              <span class="font-serif italic font-normal">Expertise,</span><br
+              />
+              Solid<br />
+              <span class="font-serif italic font-normal">Results</span>
+              <span
+                class="inline-block w-3.5 h-3.5 sm:w-4 sm:h-4 bg-[#E5A823] rounded-full ml-1.5 align-baseline"
+              ></span>
+            </h1>
+          </div>
+
+          <!-- Stats -->
+          <div
+            class="lg:col-span-5 flex items-center justify-between sm:justify-start sm:gap-12 lg:gap-14 pt-4 lg:pt-0"
+          >
+            <div>
+              <span
+                class="text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-950 block tracking-tight font-sans"
+              >
+                <span data-counter="100">0</span>+
+              </span>
+
+              <span
+                class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-600 block mt-2"
+              >
+                PROPERTIES<br />BUILT
+              </span>
+            </div>
+
+            <div>
+              <span
+                class="text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-950 block tracking-tight font-sans"
+              >
+                <span data-counter="20">0</span>+
+              </span>
+
+              <span
+                class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-600 block mt-2"
+              >
+                RESIDENTIAL<br />DEVELOPMENTS
+              </span>
+            </div>
+
+            <div>
+              <span
+                class="text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-950 block tracking-tight font-sans"
+              >
+                <span data-counter="15">0</span>+
+              </span>
+
+              <span
+                class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-600 block mt-2"
+              >
+                YEARS<br />EXPERIENCE
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Image -->
+      <div
+        class="relative w-full aspect-16/9 sm:aspect-21/9 lg:h-[620px] overflow-hidden bg-slate-300 border-t border-slate-300"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2400&q=85"
+          alt="Ardi Jaya Luxury Villa Dining Bali"
+          class="absolute inset-0 w-full h-full object-cover object-center"
+          loading="eager"
+        />
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 2. OUR MISSION                                            -->
+    <!-- ========================================================= -->
+    <section class="py-24 sm:py-32 bg-[#E5E5E7] border-b border-slate-300">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div class="max-w-4xl mb-16 sm:mb-20">
+          <span
+            class="text-xs font-mono font-bold uppercase tracking-[0.25em] text-slate-500 block mb-3"
+          >
+            OUR MISSION
+          </span>
+
+          <h2
+            class="text-3xl sm:text-5xl lg:text-5xl font-light text-slate-950 tracking-tight leading-[1.16]"
+          >
+            We specialise in developing luxury properties in prime locations
+            amongst Bali&apos;s cultural heritage.
+          </h2>
+        </div>
+
+        <!-- Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+          <!-- Card 1 -->
+          <div
+            class="bg-[#ECECEE] border border-slate-300 p-8 sm:p-10 rounded-none shadow-2xs space-y-4"
+          >
+            <div class="w-3.5 h-3.5 bg-[#E5A823] rounded-full"></div>
+
+            <h3
+              class="text-2xl sm:text-3xl font-light text-slate-950 tracking-tight pt-1"
+            >
+              Teamwork
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-slate-600 font-light leading-relaxed"
+            >
+              Our success is built on a strong foundation of teamwork. This
+              shared vision fosters a culture of continuous improvement,
+              resulting in projects of exceptional quality.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="bg-[#ECECEE] border border-slate-300 p-8 sm:p-10 rounded-none shadow-2xs space-y-4"
+          >
+            <div class="w-3.5 h-3.5 bg-[#E5A823] rounded-full"></div>
+
+            <h3
+              class="text-2xl sm:text-3xl font-light text-slate-950 tracking-tight pt-1"
+            >
+              Proven Excellence
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-slate-600 font-light leading-relaxed"
+            >
+              Ardi Jaya has a diverse
+              <a
+                href="/portfolio"
+                class="underline font-medium text-slate-900 hover:text-[#F26522] transition-colors"
+              >
+                portfolio
+              </a>
+              of successful projects in Bali. We proactively pursue excellence by
+              making continuous improvement a cornerstone of our operations.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="bg-[#ECECEE] border border-slate-300 p-8 sm:p-10 rounded-none shadow-2xs space-y-4"
+          >
+            <div class="w-3.5 h-3.5 bg-[#E5A823] rounded-full"></div>
+
+            <h3
+              class="text-2xl sm:text-3xl font-light text-slate-950 tracking-tight pt-1"
+            >
+              Business Integrity
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-slate-600 font-light leading-relaxed"
+            >
+              We believe in responsible development, enriching lives and
+              enhancing beauty while prioritising the well-being of our clients
+              and partners. Every decision underscores our commitment to
+              creating a better future for everyone.
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="bg-[#ECECEE] border border-slate-300 p-8 sm:p-10 rounded-none shadow-2xs space-y-4"
+          >
+            <div class="w-3.5 h-3.5 bg-[#E5A823] rounded-full"></div>
+
+            <h3
+              class="text-2xl sm:text-3xl font-light text-slate-950 tracking-tight pt-1"
+            >
+              Customer Care
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-slate-600 font-light leading-relaxed"
+            >
+              Ardi Jaya is dedicated to exceeding client expectations through
+              <a
+                href="#kontak"
+                class="underline font-medium text-slate-900 hover:text-[#F26522] transition-colors"
+              >
+                customer care
+              </a>. We don&apos;t just build real estate; we craft high quality
+              living spaces by understanding and fulfilling our clients&apos;
+              unique needs and desires.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 3. CONSTRUCTION PROJECTS PORTFOLIO                        -->
+    <!-- ========================================================= -->
+    <section class="py-24 sm:py-32 bg-[#ECECEE] border-b border-slate-300">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
+        >
+          <!-- Left -->
+          <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-32">
+            <span
+              class="text-xs font-mono font-bold uppercase tracking-[0.25em] text-slate-500 block"
+            >
+              CONSTRUCTION PROJECTS
+            </span>
+
+            <h2
+              class="text-3xl sm:text-5xl font-light text-slate-950 tracking-tight leading-tight"
+            >
+              Our portfolio of luxury builds
+            </h2>
+
+            <p
+              class="text-sm sm:text-base text-slate-600 font-light leading-relaxed"
+            >
+              Since 2017, we&apos;ve been tasked with many construction projects
+              around Bali; from homes and villas of all sizes to residences and
+              small hotels.
+            </p>
+
+            <div class="pt-2">
+              <a
+                href="/portfolio"
+                class="group inline-flex items-center gap-3 bg-[#1C1D21] hover:bg-[#F26522] text-white px-7 py-4 rounded-none text-xs sm:text-sm uppercase font-bold tracking-[0.2em] transition-colors duration-200 shadow-sm"
+              >
+                <span>EXPLORE OUR PORTFOLIO</span>
+
+                <span
+                  class="text-base transition-transform duration-200 group-hover:translate-x-1"
+                >
+                  &rarr;
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Portfolio -->
+          <div
+            class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
+          >
+            <div
+              class="relative aspect-4/3 w-full overflow-hidden bg-slate-300 rounded-none shadow-2xs group"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+                alt="Villa Oasis"
+                class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+
+              <div
+                class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-mono uppercase tracking-widest px-2.5 py-1"
+              >
+                Villa Oasis
+              </div>
+            </div>
+
+            <div
+              class="relative aspect-4/3 w-full overflow-hidden bg-slate-300 rounded-none shadow-2xs group"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+                alt="Villa Josuloma"
+                class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+
+              <div
+                class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-mono uppercase tracking-widest px-2.5 py-1"
+              >
+                Villa Josuloma
+              </div>
+            </div>
+
+            <div
+              class="relative aspect-4/3 w-full overflow-hidden bg-slate-300 rounded-none shadow-2xs group"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"
+                alt="Bohemian Boutique Hotel"
+                class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+
+              <div
+                class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-mono uppercase tracking-widest px-2.5 py-1"
+              >
+                Bohemian Boutique Hotel
+              </div>
+            </div>
+
+            <div
+              class="relative aspect-4/3 w-full overflow-hidden bg-slate-300 rounded-none shadow-2xs group"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
+                alt="Villa Massilia"
+                class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+
+              <div
+                class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-mono uppercase tracking-widest px-2.5 py-1"
+              >
+                Villa Massilia
+              </div>
+            </div>
+
+            <div
+              class="relative aspect-4/3 w-full overflow-hidden bg-slate-300 rounded-none shadow-2xs group"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80"
+                alt="Villa Vida"
+                class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+
+              <div
+                class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-mono uppercase tracking-widest px-2.5 py-1"
+              >
+                Villa Vida
+              </div>
+            </div>
+
+            <div
+              class="relative aspect-4/3 w-full overflow-hidden bg-slate-300 rounded-none shadow-2xs group"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80"
+                alt="The Lilly Pad"
+                class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+
+              <div
+                class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-mono uppercase tracking-widest px-2.5 py-1"
+              >
+                The Lilly Pad
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 4. FREE CONSULTATION                                      -->
+    <!-- ========================================================= -->
+    <section
+      id="kontak"
+      class="bg-[#E5E5E7] text-slate-900 border-t border-slate-300"
+    >
+      <div
+        class="max-w-4xl mx-auto px-6 sm:px-8 text-center pt-20 pb-14 sm:pt-28 sm:pb-20"
+      >
+        <h2
+          class="text-2xl sm:text-4xl font-light text-slate-950 tracking-tight mb-6"
+        >
+          Would you like a free consultation?
+        </h2>
+
+        <div>
+          <a
+            href="https://wa.me/6281234567890?text=Halo%20Ardi%20Jaya%2C%20saya%20ingin%20konsultasi%20gratis%20mengenai%20proyek%20properti%20di%20Bali."
+            target="_blank"
+            rel="noopener noreferrer"
+            id="about-consultation-btn"
+            class="group inline-flex items-center gap-3 bg-[#1C1D21] hover:bg-[#F26522] text-white px-8 py-4 rounded-none text-xs uppercase font-bold tracking-[0.2em] transition-colors duration-200 shadow-sm"
+          >
+            <span>GET IN TOUCH</span>
+
+            <span
+              class="text-base transition-transform duration-200 group-hover:translate-x-1"
+            >
+              &rarr;
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom Image -->
+      <div
+        class="relative w-full aspect-16/9 sm:aspect-21/9 lg:h-[620px] overflow-hidden bg-slate-300 border-t border-black/5"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=2400&q=85"
+          alt="Free Consultation Bali Villa"
+          class="absolute inset-0 w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>("[data-counter]");
+
+  const animateCounter = (element: HTMLElement) => {
+    const target = Number(element.dataset.counter);
+
+    if (!target) return;
+
+    const duration = 1600;
+    const startTime = performance.now();
+
+    const update = (currentTime: number) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+
+      const currentValue = Math.floor(progress * target);
+
+      element.textContent = currentValue.toString();
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        element.textContent = target.toString();
+      }
+    };
+
+    requestAnimationFrame(update);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    },
+  );
+
+  counters.forEach((counter) => observer.observe(counter));
+</script>

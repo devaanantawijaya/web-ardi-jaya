@@ -506,7 +506,7 @@ export const FAQ_DATA = [
     question:
       "Wilayah mana saja yang dijangkau oleh jasa kontraktor Ardi Jaya?",
     answer:
-      "Wilayah operasional utama kami mencakup Jabodetabek (Jakarta, Bogor, Depok, Tangerang, Bekasi), Jawa Barat, Banten, dan kawasan industri Karawang-Cikarang. Untuk proyek gudang industri, resort/villa, dan proyek skala besar, kami juga berpengalaman melayani proyek di seluruh wilayah pulau Jawa, Bali, dan Sumatera.",
+      "Berbasis di Bali, Ardi Jaya melayani proyek konstruksi di Denpasar, Badung, Gianyar, Tabanan, dan berbagai wilayah Bali lainnya. Kami terbuka untuk proyek rumah, villa, kantor, dan ruang komersial dengan cakupan layanan yang disesuaikan dengan kebutuhan setiap proyek.",
   },
   {
     id: "faq-8",

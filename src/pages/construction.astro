@@ -1,7 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import HeroSection from "../components/constructionpage/HeroSection.astro";
+import ExpertiseSection from "../components/constructionpage/ExpertiseSection.astro";
+import ExpectSection from "../components/constructionpage/ExpectSection.astro";
+import BuildProcessSection from "../components/constructionpage/BuildProcessSection.astro";
+import GetInTouchSection from "../components/constructionpage/GetInTouchSection.astro";
 ---
 
 <Layout>
-  ini construction
+  <main
+    class="min-h-screen bg-[#ECECEE] text-slate-900 font-sans flex flex-col selection:bg-[#F26522] selection:text-white"
+  >
+    <div class="flex-1">
+      <HeroSection />
+      <ExpertiseSection />
+      <ExpectSection />
+      <BuildProcessSection />
+      <GetInTouchSection />
+    </div>
+  </main>
 </Layout>
