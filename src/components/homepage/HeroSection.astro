@@ -1,6 +1,7 @@
 ---
 import { ArrowUpRight, ArrowDown, MapPin } from "@lucide/astro";
 import { COMPANY_INFO } from "../../data/dbdummy";
+import GambarHero from "../../src/assets/gambar1.jpeg";
 
 const whatsappUrl =
   "Halo Ardi Jaya, saya ingin berdiskusi mengenai proyek pembangunan di Bali.";
@@ -13,7 +14,7 @@ const whatsappUrl =
   <!-- Background -->
   <div class="absolute inset-0 z-0 pointer-events-none">
     <img
-      src="/src/assets/gambar1.jpeg"
+      src={GambarHero.src}
       alt="Ardi Jaya Luxury Construction in Bali"
       class="w-full h-full object-cover object-center scale-105"
     />
@@ -31,9 +32,7 @@ const whatsappUrl =
   <div
     class="relative z-10 max-w-4xl mx-auto px-6 text-center my-auto py-12 flex flex-col items-center"
   >
-    <p
-      class="text-xs sm:text-sm uppercase tracking-[0.3em] font-semibold mb-5"
-    >
+    <p class="text-xs sm:text-sm uppercase tracking-[0.3em] font-semibold mb-5">
       Jasa Kontraktor Bali
     </p>
     <div
