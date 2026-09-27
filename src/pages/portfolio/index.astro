@@ -12,7 +12,7 @@ const categories = [
 ];
 ---
 
-<Layout>
+<Layout page="Construction Projects in Bali">
   <main class="flex-1">
     <section
       class="relative min-h-[65vh] sm:min-h-[75vh] flex items-center justify-center overflow-hidden bg-black text-white"
@@ -44,7 +44,7 @@ const categories = [
     </section>
 
     <section
-      class="bg-[#F5F5F7] border-b border-slate-300 py-6 sticky top-[60px] z-30 shadow-xs"
+      class="bg-[#F5F5F7] border-b border-slate-300 py-6 sticky top-[85px] z-30 shadow-xs"
     >
       <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div
@@ -306,178 +306,206 @@ const categories = [
 </Layout>
 
 <script>
-  const categoryButtons =
-    document.querySelectorAll<HTMLButtonElement>(".category-btn");
+  function initPortfolioFilter() {
+    const categoryButtons =
+      document.querySelectorAll<HTMLButtonElement>(".category-btn");
 
-  const projectCards = document.querySelectorAll<HTMLElement>(".project-card");
+    const projectCards =
+      document.querySelectorAll<HTMLElement>(".project-card");
 
-  const searchInput =
-    document.querySelector<HTMLInputElement>("#project-search");
+    const searchInput =
+      document.querySelector<HTMLInputElement>("#project-search");
 
-  const emptyState = document.querySelector<HTMLElement>("#empty-state");
+    const emptyState = document.querySelector<HTMLElement>("#empty-state");
 
-  const resetButton =
-    document.querySelector<HTMLButtonElement>("#reset-filter");
+    const resetButton =
+      document.querySelector<HTMLButtonElement>("#reset-filter");
 
-  const loadMoreButton =
-    document.querySelector<HTMLButtonElement>("#load-more");
+    const loadMoreButton =
+      document.querySelector<HTMLButtonElement>("#load-more");
 
-  const loadMoreWrapper =
-    document.querySelector<HTMLElement>("#load-more-wrapper");
+    const loadMoreWrapper =
+      document.querySelector<HTMLElement>("#load-more-wrapper");
 
-  let selectedCategory = "Semua";
+    // Jangan init kalau elemen halaman portfolio tidak ada
+    if (!projectCards.length) return;
 
-  // Jumlah project yang ditampilkan
-  const ITEMS_PER_LOAD = 6;
+    let selectedCategory = "Semua";
 
-  let visibleLimit = ITEMS_PER_LOAD;
+    const ITEMS_PER_LOAD = 6;
+    let visibleLimit = ITEMS_PER_LOAD;
 
-  function filterProjects() {
-    const searchQuery = searchInput?.value.toLowerCase().trim() || "";
+    function filterProjects() {
+      const searchQuery = searchInput?.value.toLowerCase().trim() || "";
 
-    const isSearching = searchQuery.length > 0 || selectedCategory !== "Semua";
+      const isSearching =
+        searchQuery.length > 0 || selectedCategory !== "Semua";
 
-    let matchingProjects: HTMLElement[] = [];
+      const matchingProjects: HTMLElement[] = [];
 
-    projectCards.forEach((card) => {
-      const category = card.dataset.category || "";
-      const searchData = (card.dataset.search || "").toLowerCase();
+      projectCards.forEach((card) => {
+        const category = card.dataset.category || "";
+        const searchData = (card.dataset.search || "").toLowerCase();
 
-      const matchesCategory =
-        selectedCategory === "Semua" || category === selectedCategory;
+        const matchesCategory =
+          selectedCategory === "Semua" || category === selectedCategory;
 
-      const matchesSearch = searchData.includes(searchQuery);
+        const matchesSearch = searchData.includes(searchQuery);
 
-      if (matchesCategory && matchesSearch) {
-        matchingProjects.push(card);
-      }
-
-      card.classList.add("hidden");
-    });
-
-    // Saat search/filter digunakan,
-    // tampilkan semua hasil yang cocok
-    if (isSearching) {
-      matchingProjects.forEach((card) => {
-        card.classList.remove("hidden");
-      });
-
-      loadMoreWrapper?.classList.add("hidden");
-    } else {
-      // Kondisi normal: tampilkan sesuai limit
-      matchingProjects.forEach((card, index) => {
-        if (index < visibleLimit) {
-          card.classList.remove("hidden");
+        if (matchesCategory && matchesSearch) {
+          matchingProjects.push(card);
         }
+
+        card.classList.add("hidden");
       });
 
-      // Tombol Load More
-      if (matchingProjects.length > visibleLimit) {
-        loadMoreWrapper?.classList.remove("hidden");
-      } else {
+      // Search / filter
+      if (isSearching) {
+        matchingProjects.forEach((card) => {
+          card.classList.remove("hidden");
+        });
+
         loadMoreWrapper?.classList.add("hidden");
+      } else {
+        // Kondisi normal
+        matchingProjects.forEach((card, index) => {
+          if (index < visibleLimit) {
+            card.classList.remove("hidden");
+          }
+        });
+
+        // Load More
+        if (matchingProjects.length > visibleLimit) {
+          loadMoreWrapper?.classList.remove("hidden");
+        } else {
+          loadMoreWrapper?.classList.add("hidden");
+        }
       }
+
+      // Empty state
+      emptyState?.classList.toggle("hidden", matchingProjects.length !== 0);
     }
 
-    // Empty state
-    emptyState?.classList.toggle("hidden", matchingProjects.length !== 0);
-  }
+    // =========================
+    // CATEGORY FILTER
+    // =========================
 
-  // Category filter
-  categoryButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      selectedCategory = button.dataset.category || "Semua";
+    categoryButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        selectedCategory = button.dataset.category || "Semua";
 
-      visibleLimit = ITEMS_PER_LOAD;
+        visibleLimit = ITEMS_PER_LOAD;
 
-      categoryButtons.forEach((btn) => {
-        btn.classList.remove("active", "bg-black", "text-white");
+        categoryButtons.forEach((btn) => {
+          btn.classList.remove("active", "bg-black", "text-white");
 
-        btn.classList.add(
+          btn.classList.add(
+            "bg-white",
+            "text-slate-800",
+            "border",
+            "border-slate-300",
+          );
+        });
+
+        button.classList.remove(
           "bg-white",
           "text-slate-800",
           "border",
           "border-slate-300",
         );
+
+        button.classList.add("active", "bg-black", "text-white");
+
+        filterProjects();
       });
+    });
 
-      button.classList.remove(
-        "bg-white",
-        "text-slate-800",
-        "border",
-        "border-slate-300",
-      );
+    // =========================
+    // SEARCH
+    // =========================
 
-      button.classList.add("active", "bg-black", "text-white");
+    searchInput?.addEventListener("input", () => {
+      filterProjects();
+    });
+
+    // =========================
+    // LOAD MORE
+    // =========================
+
+    loadMoreButton?.addEventListener("click", () => {
+      visibleLimit += ITEMS_PER_LOAD;
 
       filterProjects();
     });
-  });
 
-  // Search
-  searchInput?.addEventListener("input", () => {
-    filterProjects();
-  });
+    // =========================
+    // RESET
+    // =========================
 
-  // Load More
-  loadMoreButton?.addEventListener("click", () => {
-    visibleLimit += ITEMS_PER_LOAD;
+    resetButton?.addEventListener("click", () => {
+      selectedCategory = "Semua";
+      visibleLimit = ITEMS_PER_LOAD;
 
-    filterProjects();
-  });
+      if (searchInput) {
+        searchInput.value = "";
+      }
 
-  // Reset
-  resetButton?.addEventListener("click", () => {
-    selectedCategory = "Semua";
-    visibleLimit = ITEMS_PER_LOAD;
+      categoryButtons.forEach((btn) => {
+        const isAll = btn.dataset.category === "Semua";
 
-    if (searchInput) {
-      searchInput.value = "";
-    }
+        btn.classList.toggle("active", isAll);
+        btn.classList.toggle("bg-black", isAll);
+        btn.classList.toggle("text-white", isAll);
 
-    categoryButtons.forEach((btn) => {
-      const isAll = btn.dataset.category === "Semua";
+        btn.classList.toggle("bg-white", !isAll);
+        btn.classList.toggle("text-slate-800", !isAll);
+        btn.classList.toggle("border", !isAll);
+        btn.classList.toggle("border-slate-300", !isAll);
+      });
 
-      btn.classList.toggle("active", isAll);
-      btn.classList.toggle("bg-black", isAll);
-      btn.classList.toggle("text-white", isAll);
-
-      btn.classList.toggle("bg-white", !isAll);
-      btn.classList.toggle("text-slate-800", !isAll);
-      btn.classList.toggle("border", !isAll);
-      btn.classList.toggle("border-slate-300", !isAll);
+      filterProjects();
     });
 
+    // =========================
+    // INITIAL FILTER
+    // =========================
+
     filterProjects();
-  });
 
-  // Initial state
-  filterProjects();
+    // =========================
+    // PROJECT TRACKING
+    // =========================
 
-  // Project tracking
-  document
-    .querySelectorAll<HTMLElement>("[data-project-click]")
-    .forEach((link) => {
-      link.addEventListener("click", () => {
-        const project = link.dataset.projectClick;
+    document
+      .querySelectorAll<HTMLElement>("[data-project-click]")
+      .forEach((link) => {
+        link.addEventListener("click", () => {
+          const project = link.dataset.projectClick;
 
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "project_click", {
-            project_name: project,
-          });
-        }
+          if (typeof window.gtag === "function") {
+            window.gtag("event", "project_click", {
+              project_name: project,
+            });
+          }
+        });
       });
+
+    // =========================
+    // WHATSAPP TRACKING
+    // =========================
+
+    const whatsappCta = document.querySelector("#portfolio-page-wa-cta");
+
+    whatsappCta?.addEventListener("click", () => {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "whatsapp_click", {
+          source: "Portfolio_Page_CTA",
+          label: "Konsultasi Proyek dari Portofolio",
+        });
+      }
     });
+  }
 
-  // WhatsApp tracking
-  const whatsappCta = document.querySelector("#portfolio-page-wa-cta");
-
-  whatsappCta?.addEventListener("click", () => {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", "whatsapp_click", {
-        source: "Portfolio_Page_CTA",
-        label: "Konsultasi Proyek dari Portofolio",
-      });
-    }
-  });
+  // Initial load + setiap navigasi ClientRouter
+  document.addEventListener("astro:page-load", initPortfolioFilter);
 </script>

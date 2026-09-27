@@ -159,94 +159,118 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 </header>
 
 <script>
-  const navbarInner = document.getElementById("navbar-inner");
-  const menuButton = document.getElementById("mobile-menu-toggle");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuIcon = document.getElementById("menu-icon");
-  const closeIcon = document.getElementById("close-icon");
+  function initNavbar() {
+    const navbarInner = document.getElementById("navbar-inner");
 
-  // Navbar scroll effect
-  const updateNavbar = () => {
+    const menuButton = document.getElementById("mobile-menu-toggle");
+
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    const menuIcon = document.getElementById("menu-icon");
+
+    const closeIcon = document.getElementById("close-icon");
+
     if (!navbarInner) return;
 
-    const scrolled = window.scrollY > 30;
+    // =========================
+    // NAVBAR SCROLL EFFECT
+    // =========================
 
-    navbarInner.classList.toggle("bg-gradient-to-b", !scrolled);
-    navbarInner.classList.toggle("from-black/80", !scrolled);
-    navbarInner.classList.toggle("via-black/40", !scrolled);
-    navbarInner.classList.toggle("to-transparent", !scrolled);
-    navbarInner.classList.toggle("py-5", !scrolled);
+    const updateNavbar = () => {
+      const scrolled = window.scrollY > 30;
 
-    navbarInner.classList.toggle("bg-[#0E1116]/95", scrolled);
-    navbarInner.classList.toggle("backdrop-blur-md", scrolled);
-    navbarInner.classList.toggle("border-b", scrolled);
-    navbarInner.classList.toggle("border-white/10", scrolled);
-    navbarInner.classList.toggle("py-3.5", scrolled);
-    navbarInner.classList.toggle("shadow-2xl", scrolled);
-  };
+      navbarInner.classList.toggle("bg-gradient-to-b", !scrolled);
+      navbarInner.classList.toggle("from-black/80", !scrolled);
+      navbarInner.classList.toggle("via-black/40", !scrolled);
+      navbarInner.classList.toggle("to-transparent", !scrolled);
+      navbarInner.classList.toggle("py-5", !scrolled);
 
-  window.addEventListener("scroll", updateNavbar);
-  updateNavbar();
+      navbarInner.classList.toggle("bg-[#0E1116]/95", scrolled);
+      navbarInner.classList.toggle("backdrop-blur-md", scrolled);
+      navbarInner.classList.toggle("border-b", scrolled);
+      navbarInner.classList.toggle("border-white/10", scrolled);
+      navbarInner.classList.toggle("py-3.5", scrolled);
+      navbarInner.classList.toggle("shadow-2xl", scrolled);
+    };
 
-  // Mobile menu
-  const toggleMenu = () => {
-    if (!mobileMenu) return;
+    window.addEventListener("scroll", updateNavbar);
 
-    const open = mobileMenu.classList.contains("max-h-0");
+    // Jalankan langsung saat halaman dibuka
+    updateNavbar();
 
-    mobileMenu.classList.toggle("max-h-0", !open);
-    mobileMenu.classList.toggle("max-h-[500px]", open);
+    // =========================
+    // MOBILE MENU
+    // =========================
 
-    mobileMenu.classList.toggle("opacity-0", !open);
-    mobileMenu.classList.toggle("opacity-100", open);
+    const toggleMenu = () => {
+      if (!mobileMenu) return;
 
-    mobileMenu.classList.toggle("-translate-y-2", !open);
-    mobileMenu.classList.toggle("translate-y-0", open);
+      const open = mobileMenu.classList.contains("max-h-0");
 
-    mobileMenu.classList.toggle("pointer-events-none", !open);
-    mobileMenu.classList.toggle("pointer-events-auto", open);
+      mobileMenu.classList.toggle("max-h-0", !open);
+      mobileMenu.classList.toggle("max-h-[500px]", open);
 
-    menuIcon?.classList.toggle("hidden", open);
-    closeIcon?.classList.toggle("hidden", !open);
+      mobileMenu.classList.toggle("opacity-0", !open);
+      mobileMenu.classList.toggle("opacity-100", open);
 
-    menuButton?.setAttribute("aria-expanded", String(open));
-  };
+      mobileMenu.classList.toggle("-translate-y-2", !open);
+      mobileMenu.classList.toggle("translate-y-0", open);
 
-  menuButton?.addEventListener("click", toggleMenu);
+      mobileMenu.classList.toggle("pointer-events-none", !open);
+      mobileMenu.classList.toggle("pointer-events-auto", open);
 
-  // Close menu after navigation
-  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenu?.classList.add("max-h-0");
-      mobileMenu?.classList.remove("max-h-[500px]");
+      menuIcon?.classList.toggle("hidden", open);
 
-      mobileMenu?.classList.add("opacity-0");
-      mobileMenu?.classList.remove("opacity-100");
+      closeIcon?.classList.toggle("hidden", !open);
 
-      mobileMenu?.classList.add("-translate-y-2");
-      mobileMenu?.classList.remove("translate-y-0");
+      menuButton?.setAttribute("aria-expanded", String(open));
+    };
 
-      mobileMenu?.classList.add("pointer-events-none");
-      mobileMenu?.classList.remove("pointer-events-auto");
+    menuButton?.addEventListener("click", toggleMenu);
 
-      menuIcon?.classList.remove("hidden");
-      closeIcon?.classList.add("hidden");
+    // =========================
+    // MOBILE NAV LINK
+    // =========================
 
-      menuButton?.setAttribute("aria-expanded", "false");
+    document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu?.classList.add("max-h-0");
+        mobileMenu?.classList.remove("max-h-[500px]");
+
+        mobileMenu?.classList.add("opacity-0");
+        mobileMenu?.classList.remove("opacity-100");
+
+        mobileMenu?.classList.add("-translate-y-2");
+        mobileMenu?.classList.remove("translate-y-0");
+
+        mobileMenu?.classList.add("pointer-events-none");
+        mobileMenu?.classList.remove("pointer-events-auto");
+
+        menuIcon?.classList.remove("hidden");
+        closeIcon?.classList.add("hidden");
+
+        menuButton?.setAttribute("aria-expanded", "false");
+      });
     });
-  });
 
-  // WhatsApp tracking
-  document
-    .querySelector("[data-wa-tracking]")
-    ?.addEventListener("click", () => {
-      window.dispatchEvent(
-        new CustomEvent("whatsapp-click", {
-          detail: {
-            source: "Navbar_Header_Button",
-            label: "Konsultasi Umum WhatsApp",
-          },
-        }),
-      );
-    });
+    // =========================
+    // WHATSAPP TRACKING
+    // =========================
+
+    document
+      .querySelector("[data-wa-tracking]")
+      ?.addEventListener("click", () => {
+        window.dispatchEvent(
+          new CustomEvent("whatsapp-click", {
+            detail: {
+              source: "Navbar_Header_Button",
+              label: "Konsultasi Umum WhatsApp",
+            },
+          }),
+        );
+      });
+  }
+
+  // Initial page + setiap navigasi ClientRouter
+  document.addEventListener("astro:page-load", initNavbar);
 </script>

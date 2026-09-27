@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
+<Layout page="About Ardi Jaya">
   <main
     class="min-h-screen bg-[#ECECEE] text-slate-900 font-sans selection:bg-[#F26522] selection:text-white"
   >
@@ -427,46 +427,54 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <script>
-  const counters = document.querySelectorAll<HTMLElement>("[data-counter]");
+  const initCounters = () => {
+    const counters = document.querySelectorAll<HTMLElement>("[data-counter]");
 
-  const animateCounter = (element: HTMLElement) => {
-    const target = Number(element.dataset.counter);
+    if (!counters.length) return;
 
-    if (!target) return;
+    const animateCounter = (element: HTMLElement) => {
+      const target = Number(element.dataset.counter);
 
-    const duration = 1600;
-    const startTime = performance.now();
+      if (!target) return;
 
-    const update = (currentTime: number) => {
-      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const duration = 1600;
+      const startTime = performance.now();
 
-      const currentValue = Math.floor(progress * target);
+      const update = (currentTime: number) => {
+        const progress = Math.min((currentTime - startTime) / duration, 1);
 
-      element.textContent = currentValue.toString();
+        const currentValue = Math.floor(progress * target);
 
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        element.textContent = target.toString();
-      }
+        element.textContent = currentValue.toString();
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          element.textContent = target.toString();
+        }
+      };
+
+      requestAnimationFrame(update);
     };
 
-    requestAnimationFrame(update);
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target as HTMLElement);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      },
+    );
+
+    counters.forEach((counter) => {
+      observer.observe(counter);
+    });
   };
 
-  const observer = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target as HTMLElement);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.5,
-    },
-  );
-
-  counters.forEach((counter) => observer.observe(counter));
+  document.addEventListener("astro:page-load", initCounters);
 </script>
