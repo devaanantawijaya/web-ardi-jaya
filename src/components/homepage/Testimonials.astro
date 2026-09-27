@@ -1,5 +1,6 @@
 ---
 import { TESTIMONIALS_DATA } from '../../data/dbdummy';
+import GambarAnonim from "../../assets/anonim.png"
 ---
 
 <section
@@ -89,7 +90,7 @@ import { TESTIMONIALS_DATA } from '../../data/dbdummy';
                 class="relative w-12 h-12 rounded-none overflow-hidden shrink-0 border border-black/15 bg-slate-300"
               >
                 <img
-                  src="/src/assets/anonim.png"
+                  src={GambarAnonim.src}
                   alt={item.name}
                   class="w-full object-cover"
                   referrerpolicy="no-referrer"
