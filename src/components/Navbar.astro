@@ -1,5 +1,6 @@
 ---
 import { MessageSquareText, Menu, X, ArrowUpRight } from "@lucide/astro";
+import LogoArdiJaya from "../../src/assets/logo ardi jaya.png"
 
 const navLinks = [
   { label: "Construction", href: "/construction" },
@@ -33,7 +34,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 hover:opacity-90 transition">
         <img
-          src="/src/assets/logo ardi jaya.png"
+          src={LogoArdiJaya.src}
           alt="Ardi Jaya Construction Bali"
           class="w-auto h-[58px] sm:h-[62px] object-contain"
         />
