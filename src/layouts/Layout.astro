@@ -7,6 +7,7 @@ import FloatingWhatsApp from "../components/FloatingWhatsApp.astro";
 const brandName = "Ardi jaya";
 const { page } = Astro.props;
 const pathname = Astro.url.pathname;
+import LogoArdiJaya from "../../public/logo ardi jaya.png";
 
 const pageName =
   pathname === "/"
@@ -19,7 +20,7 @@ const pageName =
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/public/logo ardi jaya.png" />
+    <link rel="icon" type="image/png" href={LogoArdiJaya.src} />
     <meta name="generator" content={Astro.generator} />
     <title>{pageName}</title>
     <ClientRouter />
