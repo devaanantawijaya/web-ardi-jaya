@@ -1,0 +1,111 @@
+---
+import { MessageSquareText, X, ArrowUp } from "@lucide/astro";
+---
+
+<div
+  id="floating-widget"
+  class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5 pointer-events-auto"
+>
+  <!-- Scroll to Top Button -->
+  <button
+    type="button"
+    id="scroll-to-top-btn"
+    aria-label="Kembali ke atas"
+    title="Scroll to top"
+    class="hidden group items-center justify-center w-11 h-11 bg-black hover:bg-[#F26522] text-white rounded-none shadow-xl border border-white/20 transition-all duration-200 focus:outline-hidden"
+  >
+    <ArrowUp
+      class="w-5 h-5 group-hover:-translate-y-0.5 transition-transform"
+    />
+  </button>
+
+  <!-- Tooltip -->
+  <div
+    id="whatsapp-tooltip"
+    class="relative bg-white text-slate-900 rounded-none shadow-xl border border-slate-300 p-3.5 max-w-[220px] text-xs animate-in fade-in duration-200"
+  >
+    <button
+      type="button"
+      id="close-tooltip"
+      class="absolute top-1.5 right-1.5 text-slate-400 hover:text-black p-0.5"
+      aria-label="Tutup petunjuk"
+    >
+      <X class="w-3.5 h-3.5" />
+    </button>
+
+    <p class="font-bold text-slate-950 uppercase tracking-tight pr-3">
+      Butuh Estimasi Biaya?
+    </p>
+
+    <p class="text-slate-600 text-[11px] mt-0.5 font-light leading-snug">
+      Konsultasi &amp; survey lokasi 100% gratis via WhatsApp resmi.
+    </p>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a
+    href="https://wa.me/6281234567890?text=Halo%20Ardi%20Jaya%2C%20saya%20ingin%20konsultasi%20proyek%20via%20WhatsApp."
+    target="_blank"
+    rel="noopener noreferrer"
+    id="floating-whatsapp-btn"
+    class="group relative flex items-center justify-center w-14 h-14 bg-black hover:bg-[#F26522] text-white rounded-none shadow-2xl transition-all duration-200 focus:outline-hidden border border-white/20"
+    aria-label="Chat WhatsApp Langsung dengan Ardi Jaya"
+  >
+    <span
+      class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-[#F26522] rounded-none border border-white flex items-center justify-center"
+    >
+      <span class="w-1.5 h-1.5 rounded-none bg-white animate-ping"></span>
+    </span>
+
+    <MessageSquareText class="w-6 h-6" />
+  </a>
+</div>
+
+<script>
+  const initFloatingWidget = () => {
+    const scrollTopBtn = document.getElementById("scroll-to-top-btn");
+    const closeTooltip = document.getElementById("close-tooltip");
+    const tooltip = document.getElementById("whatsapp-tooltip");
+
+    if (!scrollTopBtn) return;
+
+    // Cek posisi scroll
+    const checkScroll = () => {
+      if (window.scrollY > 250) {
+        scrollTopBtn.classList.remove("hidden");
+        scrollTopBtn.classList.add("flex");
+      } else {
+        scrollTopBtn.classList.add("hidden");
+        scrollTopBtn.classList.remove("flex");
+      }
+    };
+
+    // Hindari listener dobel
+    window.removeEventListener("scroll", checkScroll);
+    window.addEventListener("scroll", checkScroll);
+
+    checkScroll();
+
+    // Scroll ke atas
+    scrollTopBtn.onclick = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+
+    // Tutup tooltip
+    if (closeTooltip && tooltip) {
+      closeTooltip.onclick = () => {
+        tooltip.remove();
+      };
+    }
+  };
+
+  // Initial load
+  initFloatingWidget();
+
+  // Astro ClientRouter / View Transitions
+  document.addEventListener("astro:page-load", initFloatingWidget);
+</script>
+
