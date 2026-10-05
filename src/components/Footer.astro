@@ -4,6 +4,8 @@ import LogoArdiJaya from "../../src/assets/logo ardi jaya.png"
 
 const Messagelions =
   "Halo tim manajemen Ardi Jaya, saya ingin konsultasi pembangunan di Bali.";
+
+const waLink = `https://wa.me/6282236439051?text=${encodeURIComponent(Messagelions)}`;
 ---
 
 <footer class="bg-[#07090D] text-slate-400 border-t border-white/10 text-sm">
@@ -135,7 +137,7 @@ const Messagelions =
 
         <div class="mt-6">
           <a
-            href={Messagelions}
+            href={waLink}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2.5 bg-white hover:bg-[#F26522] text-black hover:text-white text-xs uppercase font-bold tracking-[0.2em] px-6 py-3.5 rounded-none transition-colors duration-200"
