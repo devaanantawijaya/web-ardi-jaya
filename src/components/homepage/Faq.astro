@@ -120,61 +120,78 @@ import { FAQ_DATA } from "../../data/dbdummy";
 </section>
 
 <script>
-  const buttons = document.querySelectorAll(".faq-button");
+  function initFAQ() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".faq-button");
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const item = button.closest(".faq-item");
-      const answer = item?.querySelector(".faq-answer");
-      const icon = item?.querySelector(".faq-icon");
+    buttons.forEach((button) => {
+      // Hindari event listener terpasang dua kali
+      if (button.dataset.faqInitialized === "true") return;
 
-      if (!answer || !icon) return;
+      button.dataset.faqInitialized = "true";
 
-      const isOpen = button.getAttribute("aria-expanded") === "true";
+      button.addEventListener("click", () => {
+        const item = button.closest(".faq-item");
+        const answer = item?.querySelector(".faq-answer");
+        const icon = item?.querySelector(".faq-icon");
 
-      // Tutup semua FAQ
-      document.querySelectorAll(".faq-button").forEach((btn) => {
-        btn.setAttribute("aria-expanded", "false");
+        if (!answer || !icon) return;
+
+        const isOpen = button.getAttribute("aria-expanded") === "true";
+
+        // Tutup semua FAQ
+        document
+          .querySelectorAll<HTMLButtonElement>(".faq-button")
+          .forEach((btn) => {
+            btn.setAttribute("aria-expanded", "false");
+          });
+
+        document.querySelectorAll<HTMLElement>(".faq-answer").forEach((el) => {
+          el.classList.add("hidden");
+          el.classList.remove("block");
+        });
+
+        document.querySelectorAll<HTMLElement>(".faq-icon").forEach((el) => {
+          el.classList.remove(
+            "rotate-180",
+            "bg-black",
+            "text-white",
+            "border-black",
+          );
+
+          el.classList.add(
+            "bg-transparent",
+            "text-slate-900",
+            "border-slate-300",
+          );
+        });
+
+        // Kalau sebelumnya tertutup, buka FAQ yang diklik
+        if (!isOpen) {
+          button.setAttribute("aria-expanded", "true");
+
+          answer.classList.remove("hidden");
+          answer.classList.add("block");
+
+          icon.classList.remove(
+            "bg-transparent",
+            "text-slate-900",
+            "border-slate-300",
+          );
+
+          icon.classList.add(
+            "rotate-180",
+            "bg-black",
+            "text-white",
+            "border-black",
+          );
+        }
       });
-
-      document.querySelectorAll(".faq-answer").forEach((el) => {
-        el.classList.add("hidden");
-        el.classList.remove("block");
-      });
-
-      document.querySelectorAll(".faq-icon").forEach((el) => {
-        el.classList.remove(
-          "rotate-180",
-          "bg-black",
-          "text-white",
-          "border-black",
-        );
-        el.classList.add(
-          "bg-transparent",
-          "text-slate-900",
-          "border-slate-300",
-        );
-      });
-
-      // Kalau sebelumnya tertutup, buka yang diklik
-      if (!isOpen) {
-        button.setAttribute("aria-expanded", "true");
-
-        answer.classList.remove("hidden");
-        answer.classList.add("block");
-
-        icon.classList.remove(
-          "bg-transparent",
-          "text-slate-900",
-          "border-slate-300",
-        );
-        icon.classList.add(
-          "rotate-180",
-          "bg-black",
-          "text-white",
-          "border-black",
-        );
-      }
     });
-  });
+  }
+
+  // Saat pertama kali halaman dimuat
+  initFAQ();
+
+  // Saat Astro ClientRouter melakukan navigasi
+  document.addEventListener("astro:page-load", initFAQ);
 </script>
