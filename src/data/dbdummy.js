@@ -1,16 +1,16 @@
 export const COMPANY_INFO = {
   name: "Ardi Jaya",
   tagline: "Building Material Equipment & Construction",
-  phone: "6281234567890",
-  phoneDisplay: "+62 812-3456-7890",
-  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6281234567890",
+  phone: "6282236439051",
+  phoneDisplay: "+62 822-3643-9051",
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6282236439051",
   email: "kontraktor@ardijaya.co.id",
   address: "Desa Baluk, Kec. Negara, Kab. Jembrana",
   city: "Jembrana, Bali, Indonesia",
   operatingHours: "Senin - Sabtu: 08:00 - 18:00 WITA (Konsultasi WA 24 Jam)",
   licenseNumber: "NIB: 9120204910294 | SKA Konstruksi No. 1.2.201.2.091.29",
-  yearsExperience: 15,
-  completedProjects: 285,
+  yearsExperience: 25,
+  completedProjects: 50,
   heavyEquipmentUnits: 48,
   satisfactionRate: 99,
 };
@@ -459,7 +459,7 @@ export const FAQ_DATA = [
     question:
       "Bagaimana alur dan langkah kerja sama pembangunan dengan Ardi Jaya?",
     answer:
-      "Alur kerja kami sangat terstruktur dan transparan: (1) Konsultasi awal kebutuhan via WhatsApp atau tatap muka, (2) Survey lokasi & pengukuran lahan gratis oleh tim arsitek/sipil kami, (3) Pembuatan Konsep Desain & Rencana Anggaran Biaya (RAB) rinci, (4) Penandatanganan Surat Perjanjian Kerja (SPK) berbadan hukum, (5) Pelaksanaan konstruksi dengan pengawasan mandor & laporan mingguan, (6) Serah terima kunci dan penyerahan sertifikat garansi resmi.",
+      "Alur kerja kami sangat terstruktur dan transparan: (1) Konsultasi kebutuhan awal melalui WhatsApp atau tatap muka, (2) survei lokasi dan pengukuran lahan, (3) pembuatan konsep desain dan Rencana Anggaran Biaya (RAB), (4) penandatanganan surat perjanjian kerja, (5) pelaksanaan pembangunan sesuai kesepakatan, dan (6) pemeriksaan hasil pekerjaan serta serah terima proyek.",
   },
   {
     id: "faq-2",
@@ -467,14 +467,14 @@ export const FAQ_DATA = [
     question:
       "Apakah survei lokasi, konsultasi awal, dan estimasi biaya dikenakan tarif?",
     answer:
-      "Tidak, seluruh konsultasi via WhatsApp, survei lokasi untuk wilayah Jabodetabek dan sekitarnya, serta pembuatan estimasi biaya awal adalah 100% GRATIS tanpa kewajiban apa pun. Kami ingin memastikan Anda mendapatkan gambaran perencanaan yang akurat sebelum memutuskan.",
+      "Konsultasi awal melalui WhatsApp atau tatap muka gratis. Sementara itu, survei lokasi dan penyusunan Rencana Anggaran Biaya (RAB) dilakukan sebagai bagian dari tahap perencanaan proyek, dengan biaya yang disesuaikan berdasarkan kebutuhan dan kesepakatan.",
   },
   {
     id: "faq-3",
     category: "Biaya & Kontrak",
     question: "Bagaimana sistem pembayaran proyek di Ardi Jaya?",
     answer:
-      "Kami menerapkan sistem pembayaran bertahap (Termin) yang aman dan berkeadilan bagi kedua pihak. Pembayaran dibagi ke dalam 4-5 tahapan berdasarkan persentase fisik kemajuan proyek (misal: Uang Muka 20%, Termin I Pekerjaan Pondasi & Struktur Bawah 25%, Termin II Dinding & Atap 25%, Termin III Finishing 25%, dan Retensi Pemeliharaan 5% setelah masa uji selesai).",
+      "Kami menerapkan sistem pembayaran bertahap (Termin) yang aman dan berkeadilan bagi kedua pihak. Pembayaran dibagi ke dalam 5 tahapan berdasarkan persentase fisik kemajuan proyek (misal: Uang Muka, Termin I, Termin II, Termin III, dan Retensi Pemeliharaan 3-6 bulan).",
   },
   {
     id: "faq-4",
@@ -482,15 +482,15 @@ export const FAQ_DATA = [
     question:
       "Apakah ada jaminan garansi setelah pekerjaan konstruksi selesai?",
     answer:
-      "Tentu. Ardi Jaya memberikan 2 bentuk jaminan: (1) Garansi Pemeliharaan (Retensi) selama 3 hingga 6 bulan untuk perbaikan minor seperti cat, instalasi air/listrik, atau penyesuaian aksesoris, dan (2) Sertifikat Garansi Struktur Utama hingga 10 Tahun yang mencakup kekuatan pondasi, balok, kolom beton bertulang, dan rangka baja utama.",
+      "Kami bertanggung jawab atas kesalahan pengerjaan yang disebabkan oleh pihak kontraktor selama proses pembangunan, kecuali kerusakan akibat faktor eksternal atau keadaan kahar (force majeure). Setelah proyek selesai, tersedia masa pemeliharaan selama 3–6 bulan untuk pekerjaan nonstruktural, sesuai kesepakatan dalam kontrak.",
   },
   {
     id: "faq-5",
     category: "Material & Alat",
     question:
-      "Apakah Ardi Jaya juga melayani pengadaan material dan sewa alat berat terpisah?",
+      "Apakah Ardi Jaya melayani penyewaan alat berat?",
     answer:
-      'Ya, selain menangani proyek konstruksi menyeluruh (turnkey), kami memiliki divisi mandiri "Ardi Jaya Building Material" untuk pengadaan material berskala grosir (semen, besi SNI, bata hebel, ready-mix) serta divisi "Construction Equipment" untuk penyewaan alat berat (excavator, mobile crane, vibro roller, dump truck) bagi kontraktor mitra atau instansi proyek.',
+      'Ardi Jaya dapat membantu mencarikan dan mengoordinasikan penyediaan alat berat sesuai kebutuhan proyek. Pengadaan dilakukan berdasarkan jenis alat, durasi penggunaan, dan kondisi di lapangan',
   },
   {
     id: "faq-6",
@@ -511,9 +511,9 @@ export const FAQ_DATA = [
   {
     id: "faq-8",
     category: "Biaya & Kontrak",
-    question: "Apakah Ardi Jaya membantu pengurusan perizinan (PBG / SLF)?",
+    question: "Apakah Ardi Jaya membantu pengurusan perizinan (PBG)?",
     answer:
-      "Ya, tim kami memiliki staf perizinan profesional yang siap mendampingi dan mengurus Persetujuan Bangunan Gedung (PBG pengganti IMB), Sertifikat Laik Fungsi (SLF), serta pengujian sondir tanah dan dokumen AMDAL/UKL-UPL untuk proyek komersial dan industri.",
+      "Ya, tim kami memiliki staf perizinan profesional yang siap mendampingi dan mengurus Persetujuan Bangunan Gedung (PBG pengganti IMB) sesuai peraturan pemerintah daerah setempat. Kami memastikan semua dokumen legalitas proyek lengkap dan sah secara hukum.",
   },
 ];
 
